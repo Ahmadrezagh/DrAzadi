@@ -6,17 +6,17 @@ Login
 
 <div class="login-box">
     <div class="login-logo">
-      <a href="#"><b>Login</b> Page</a>
+      <a href="#"><b>صفحه</b> ورود </a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
-      <div class="card-body login-card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+      <div class="card-body login-card-body " >
+        <p class="login-box-msg">ورود به حساب کاربری</p>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
           <div class="input-group mb-3">
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
+            <input id="email" type="email" class="form-control text-right @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="ایمیل" autofocus>
 
             <div class="input-group-append">
               <div class="input-group-text">
@@ -26,7 +26,7 @@ Login
 
           </div>
           <div class="input-group mb-3">
-            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required placeholder="Password" autocomplete="current-password">
+            <input id="password" type="password" class="form-control text-right @error('password') is-invalid @enderror" name="password" required placeholder="رمز عبور" autocomplete="current-password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -34,26 +34,19 @@ Login
             </div>
           </div>
           <div class="row">
-            <div class="col-8">
-              <div class="icheck-primary">
-                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                <label for="remember">
-                  Remember Me
-                </label>
-              </div>
-            </div>
+
             <!-- /.col -->
             <div class="col-4">
-              <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+              <button type="submit" class="btn btn-primary btn-block">ورود</button>
             </div>
             <!-- /.col -->
           </div>
         </form>
-        <p class="mb-1">
-          <a href="{{ route('password.request') }}">I forgot my password</a>
+        <p class="mb-1 text-right">
+          <a href="{{ route('password.request') }}">رمز عبورم را فراموش کرده ام</a>
         </p>
-        <p class="mb-0">
-          <a href="{{URL::to('/')}}/register" class="text-center">Register a new membership</a>
+        <p class="mb-0 text-right">
+          <a href="{{URL::to('/')}}/register" class="text-center">ثبت نام در وبسایت</a>
         </p>
       </div>
       <!-- /.login-card-body -->

@@ -15,6 +15,10 @@ class CreateDocsTable extends Migration
     {
         Schema::create('docs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('year');
+            $table->unsignedInteger('month');
+            $table->string('slug')->unique();
+            $table->string('nvd_url');
             $table->timestamps();
         });
     }

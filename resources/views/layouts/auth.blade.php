@@ -19,8 +19,14 @@
   <link rel="stylesheet" href="{{URL::to('/')}}/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: IranYekan;
+            src: url(/fonts/ttf/iranyekanwebboldfanum.ttf);
+        }
+    </style>
 </head>
-<body class="hold-transition login-page">
+<body style="font-family: IranYekan" class="hold-transition login-page">
 @yield('content')
 
 <!-- jQuery -->

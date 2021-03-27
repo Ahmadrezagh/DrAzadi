@@ -57,5 +57,15 @@ function DB_delete($table,$id,$column = null)
     DB::table($table)->where($column ? $column : 'id','=',$id)->delete();
 }
 
+if (!function_exists('try_catch_null')) {
+    function try_catch_null($closure)
+    {
+        try {
+            return $closure();
+        } catch (Exception $ex) {
+            return null;
+        }
+    }
+}
 
 

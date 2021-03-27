@@ -7,7 +7,7 @@
     active
 @endsection
 @section('title')
-    New Admin
+    ساخت مدیر جدید
 @endsection
 @section('content')
 
@@ -18,14 +18,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">New Admin</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Admins</a></li>
-                            <li class="breadcrumb-item active">New Admin</li>
-                        </ol>
+                        <h1 class="m-0 text-dark">مدیر جدید</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -40,31 +33,31 @@
                         <form action="{{route('admin.store')}}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Name</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name" required>
+                                <label for="exampleInputEmail1">نام</label>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام مدیر را وارد نمایید" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                                <label for="exampleInputEmail1">ایمیل</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ایمیل" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="exampleInputPassword1" placeholder="Password" required>
+                                <label for="exampleInputPassword1">رمز عبور</label>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="exampleInputPassword1" placeholder="رمز عبور" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Retype password</label>
-                                <input type="password" name="re_password" class="form-control @error('re_password') is-invalid @enderror"  id="exampleInputPassword1" placeholder="Password" required>
+                                <label for="exampleInputPassword1">تکرار رمز عبور</label>
+                                <input type="password" name="re_password" class="form-control @error('re_password') is-invalid @enderror"  id="exampleInputPassword1" placeholder="تکرار رمز عبور" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Select Role</label>
+                                <label for="exampleFormControlSelect1">انتخاب نقش</label>
                                 <select class="form-control" name="role" id="exampleFormControlSelect1">
-                                    <option value="0"  selected disabled>Select role</option>
+                                    <option value="0"  selected disabled>انتخاب نقش</option>
                                     @foreach($roles as $role)
                                         <option value="{{$role->name}}">{{$role->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">ایجاد</button>
                         </form>
                     </div>
                 </div>

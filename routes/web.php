@@ -23,7 +23,9 @@ Route::middleware(['auth'])->group(function () {
         // Amin routes
         Route::resource('admin', 'Admin\AdminController');
         Route::resource('roles', 'Admin\RoleController');
-        Route::resource('categories', 'Admin\CategoryController');
+//        Route::resource('categories', 'Admin\CategoryController');
+        Route::resource('documents','Admin\DocumentController');
+        Route::resource('content','Admin\ContentController');
         Route::resource('users', 'Admin\UserController');
         Route::resource('settings', 'Admin\SettingController');
 

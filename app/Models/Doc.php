@@ -124,4 +124,9 @@ class Doc extends Model
 
         return $content;
     }
+
+    public function score()
+    {
+        return $this->content->score->where('score_desc','!=',NULL)->first();
+    }
 }
