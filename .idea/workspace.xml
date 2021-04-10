@@ -11,32 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeeae8a-233b-4cef-8d2e-23164946c062" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/content/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/documents/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/AdminPanelLaravel8.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AdminPanelLaravel8.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Helpers/helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/helper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Archive.zip" beforeDir="false" afterPath="$PROJECT_DIR$/Archive.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Doc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_02_155902_create_docs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_02_155902_create_docs_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_02_160809_create_contents_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_02_160809_create_contents_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_03_02_160903_create_scores_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_03_02_160903_create_scores_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/admins/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/admins/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/admins/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/admins/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/admins/roles.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/admins/roles.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/settings/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/settings/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/email.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/auth.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/auth.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/panel.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/panel.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +152,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -213,7 +195,9 @@
       <workItem from="1614803021275" duration="14863000" />
       <workItem from="1615104646392" duration="691000" />
       <workItem from="1616708195706" duration="81000" />
-      <workItem from="1616747615727" duration="6023000" />
+      <workItem from="1616747615727" duration="6253000" />
+      <workItem from="1617021529751" duration="1280000" />
+      <workItem from="1618053215565" duration="639000" />
     </task>
     <servers />
   </component>
@@ -233,6 +217,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="320" y="127" key="#Deployment" timestamp="1618053502340">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="320" y="127" key="#Deployment/0.23.1440.877@0.23.1440.877" timestamp="1618053502340" />
+    <state x="304" y="114" key="#SSH_Configurations" timestamp="1618053485495">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="304" y="114" key="#SSH_Configurations/0.23.1440.877@0.23.1440.877" timestamp="1618053485495" />
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611516496888">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -246,6 +238,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1614701141883" />
+    <state x="556" y="367" key="WebDeployment.AddServerDialog.v.1" timestamp="1618053424402">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="556" y="367" key="WebDeployment.AddServerDialog.v.1/0.23.1440.877@0.23.1440.877" timestamp="1618053424402" />
     <state x="385" y="214" width="670" height="659" key="search.everywhere.popup" timestamp="1614781535948">
       <screen x="0" y="23" width="1440" height="877" />
     </state>

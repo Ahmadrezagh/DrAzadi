@@ -129,4 +129,6 @@ class Doc extends Model
     {
         return $this->content->score->where('score_desc','!=',NULL)->first();
     }
+
+
 }
