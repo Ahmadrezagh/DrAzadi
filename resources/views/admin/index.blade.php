@@ -45,7 +45,7 @@
                             <div class="inner">
                                 <h3>{{count(\App\Models\Content::get())}}</h3>
 
-                                <p>محتوای داکیومنت</p>
+                                <p>محتوای دریافت شده</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-stats-bars"></i>
