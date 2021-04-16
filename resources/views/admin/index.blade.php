@@ -85,74 +85,10 @@
                     <!-- ./col -->
                 </div>
                 <!-- /.row -->
-                @if((Auth::user()->isAdmin() && Auth::user()->can('Documents')) || Auth::user()->isSuperAdmin())
-                <div class="card">
-                    <div class="card-header">
-                        داکیومنت ها
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="Mytable" class="table table-bordered table-striped text-center">
-                                <thead>
-                                <tr>
-                                    <th>شناسه پایگاه داده</th>
-                                    <th>نام</th>
-                                    <th>سال</th>
-                                    <th>ماه</th>
-                                    <th>منبع</th>
-                                    <th>لینک منبع</th>
-                                    <th>امتیاز پایه</th>
-                                    <th>درجه کیفی</th>
-                                </tr>
-                                </thead>
-                                <tbody >
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                @endif
+
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-@endsection
-@section('js')
-    <script>
-        $(function () {
-            $("#Mytable").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-                "rtl" : true,
-                "language": {
-                    "paginate": {
-                        "previous": "قبلی",
-                        "next" : "بعدی"
-                    },
-                    "sLengthMenu": "تعداد رکورد در صفحه _MENU_ ",
-                    "sSearch" : "جستجو:",
-                    "emptyTable":     "هیچ داده ای برای نمایش موجود نیست",
-                    "info":           "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
-                    "infoEmpty":      "نمایش 0 تا 0 از 0 رکورد",
-
-                    "infoFiltered":   "(نتیجه جستجو بین _MAX_ رکورد)",
-                    "zeroRecords":    "اطلاعاتی مبنی بر جستجو شما موجود نیست...",
-                },
-                "processing": true,
-                "serverSide": true,
-                "ajax": "{{route('docs.api')}}",
-                "columns": [
-                    { "data": "id" },
-                    { "data": "slug" },
-                    { "data": "year" },
-                    { "data": "month" },
-                    { "data" : "source"},
-                    { "data": "nvd_url" },
-                    { "data" : "score" },
-                    { "data" : "score_desc"}
-                ]
-
-            });
-        });
-    </script>
 @endsection
