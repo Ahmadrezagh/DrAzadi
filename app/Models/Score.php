@@ -15,4 +15,7 @@ class Score extends Model
     {
         return $this->belongsTo(Content::class);
     }
+    protected $casts = [
+        'score' => 'float',
+    ];
 }

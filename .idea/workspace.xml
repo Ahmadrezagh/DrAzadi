@@ -10,7 +10,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efeeae8a-233b-4cef-8d2e-23164946c062" name="Default Changelist" comment="" />
+    <list default="true" id="efeeae8a-233b-4cef-8d2e-23164946c062" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DocumentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DocumentController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Doc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Score.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Score.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/documents/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/documents/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -200,7 +208,10 @@
       <workItem from="1618129514904" duration="1452000" />
       <workItem from="1618167108022" duration="953000" />
       <workItem from="1618297549998" duration="937000" />
-      <workItem from="1618298808414" duration="1982000" />
+      <workItem from="1618298808414" duration="2826000" />
+      <workItem from="1618404091498" duration="1161000" />
+      <workItem from="1618494458957" duration="2782000" />
+      <workItem from="1618549499075" duration="21302000" />
     </task>
     <servers />
   </component>
@@ -232,15 +243,19 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="444" y="270" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1618299768625" />
+    <state x="523" y="150" key="#com.intellij.ide.util.MemberChooser" timestamp="1618567370957">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="523" y="150" key="#com.intellij.ide.util.MemberChooser/0.23.1440.877@0.23.1440.877" timestamp="1618567370957" />
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1611516496888">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1611516496888" />
-    <state x="458" y="230" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1614844044166">
+    <state x="458" y="230" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1618549674789">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1611519162352" />
-    <state x="458" y="230" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1614844044166" />
+    <state x="458" y="230" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1618549674789" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1614701141883">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -267,6 +282,11 @@
           <url>file://$PROJECT_DIR$/resources/views/admin/admins/index.blade.php</url>
           <line>48</line>
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/admin/documents/index.blade.php</url>
+          <line>84</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

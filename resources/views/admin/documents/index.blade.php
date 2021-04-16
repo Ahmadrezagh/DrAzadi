@@ -31,45 +31,69 @@
                         <h3 class="card-title" style="float: right">داکیومنت ها</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <button class="btn btn-primary mb-3" data-toggle="modal" data-target="#modal-create">بروزرسانی لیست داکیومنت ها</button>
-
-                        <!-- Create Modal -->
-                        <div class="modal fade" id="modal-create">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">بروزرسانی لیست</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- form start -->
-                                        بروزرسانی لیست داکیومنت ها بدلیل این که اسکریپ دیتا رخ می دهد ممکن است نظم دیتا های دیتابیستان را به هم بریزد
-                                        عواقب این کار با شخص خودتان است
-                                    </div>
-                                    <div class="card-footer">
-                                        <a href="{{route('docs.update')}}" class="btn btn-primary">بروزرسانی</a>
-                                    </div>
-                                </div>
-                                <!-- /.modal-content -->
+                    <div class="card-body row">
+                    <div class="col-md-12 mb-3">
+                        <form action="{{url()->full()}}" class="col-md-12 row">
+                            <div class="col-3">
+                                <input type="text" class="form-control mb-3" name="key" placeholder="جستجو" value="{{Request::query('key')}}">
                             </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <!-- /.modal -->
-
+                            <div class="col-1">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                            <div class=" col-12 row">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="1"  id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(1,request()->SearchOptions)) checked @endif >
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        شناسه پایگاه داده
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="2" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(2,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        نام
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="3" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(3,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        سال
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="4" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(4,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        ماه
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="5" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(5,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        امتیاز پایه
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="6" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(6,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        درجه کیفی
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-12">
                         <table id="Mytable" class="table table-bordered table-striped text-center">
                             <thead>
                             <tr>
-                                <th>شناسه پایگاه داده</th>
-                                <th>نام</th>
-                                <th>سال</th>
-                                <th>ماه</th>
-                                <th>منبع</th>
-                                <th>لینک منبع</th>
-                                <th>امتیاز پایه</th>
-                                <th>درجه کیفی</th>
+                                <th><a @if(request()->sortById && request()->sortById == 'asc' ) href="?sortById=desc" @else href="?sortById=asc" @endif >شناسه پایگاه داده</a></th>
+                                <th><a @if(request()->sortByName && request()->sortByName == 'asc' ) href="?sortByName=desc" @else href="?sortByName=asc" @endif >نام</a></th>
+                                <th><a @if(request()->sortByYear && request()->sortByYear == 'asc' ) href="?sortByYear=desc" @else href="?sortByYear=asc" @endif >سال</a></th>
+                                <th><a @if(request()->sortByMonth && request()->sortByMonth == 'asc' ) href="?sortByMonth=desc" @else href="?sortByMonth=asc" @endif >ماه</a></th>
+                                <th><a href="#">منبع</a></th>
+                                <th><a href="#">لینک منبع</a></th>
+                                <th><a @if(request()->sortByScore && request()->sortByScore == 'asc' ) href="?sortByScore=desc" @else href="?sortByScore=asc" @endif>امتیاز پایه</a></th>
+                                <th><a @if(request()->sortByScore && request()->sortByScore == 'asc' ) href="?sortByScore=desc" @else href="?sortByScore=asc" @endif  >درجه کیفی</a></th>
                             </tr>
                             </thead>
                             <tbody >
@@ -80,14 +104,23 @@
                                         <a href="{{route('documents.show',$doc->id)}}">{{$doc->slug}}</a>
                                     </td>
                                     <td>{{$doc->year}}</td>
-                                    <td>{{\Carbon\Carbon::create()->month(2)->format('M')}}</td>
-                                    <td><p>sadsaads</p></td>
-                                    <td><a class="btn btn-primary" href="{{$doc->nvd_url ?? '#'}}">مشاهده</a></td>
+                                    <td>{{\Carbon\Carbon::create()->month($doc->month)->format('M')}}</td>
+                                    <td><p>{{$doc->content->source}}</p></td>
+                                    <td><a class="btn btn-primary" target="_blank" href="{{$doc->nvd_url ?? '#'}}"  >مشاهده</a></td>
+                                    <td @if(!$doc->score()) style="color: red" @endif >{{$doc->score()->score ?? 'N/A'}}</td>
+                                    <td @if(!$doc->score()) style="color: red" @endif >{{$doc->score()->score_desc ?? 'N/A'}}</td>
                                 </tr>
                             @endforeach
 
                         </table>
                     </div>
+
+                    </div>
+                    @if((request()->paginate > 0 && count($documents) > 0) || !isset(request()->paginate))
+                        <div class="d-flex justify-content-center text-center">
+                            {{$documents->links()}}
+                        </div>
+                    @endif
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
@@ -97,43 +130,4 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-@endsection
-@section('js')
-    <script>
-        $(function () {
-            $("#Mytable").DataTable({
-                "responsive": true,
-                "autoWidth": false,
-                "rtl" : true,
-                "language": {
-                    "paginate": {
-                        "previous": "قبلی",
-                        "next" : "بعدی"
-                    },
-                    "sLengthMenu": "تعداد رکورد در صفحه _MENU_ ",
-                    "sSearch" : "جستجو:",
-                    "emptyTable":     "هیچ داده ای برای نمایش موجود نیست",
-                    "info":           "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
-                    "infoEmpty":      "نمایش 0 تا 0 از 0 رکورد",
-
-                    "infoFiltered":   "(نتیجه جستجو بین _MAX_ رکورد)",
-                    "zeroRecords":    "اطلاعاتی مبنی بر جستجو شما موجود نیست...",
-                },
-                "processing": true,
-                "serverSide": true,
-                "ajax": "{{route('docs.api')}}",
-                "columns": [
-                    { "data": "id" },
-                    { "data": "slug" },
-                    { "data": "year" },
-                    { "data": "month" },
-                    { "data" : "source"},
-                    { "data": "nvd_url" },
-                    { "data" : "score" },
-                    { "data" : "score_desc"}
-                ]
-
-            });
-        });
-    </script>
 @endsection

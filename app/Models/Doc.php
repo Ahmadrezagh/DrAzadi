@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
+use mysql_xdevapi\Exception;
 use simplehtmldom\HtmlWeb;
 
 class Doc extends Model
@@ -15,11 +17,13 @@ class Doc extends Model
     use HasFactory;
 
     protected $guarded = [];
-
+    protected $with = ['content'];
     public function content(): HasOne
     {
         return $this->hasOne(Content::class);
     }
+
+
 
     public static function fetchNews($fromYear = null)
     {
@@ -104,7 +108,7 @@ class Doc extends Model
                         return strtolower($row->find('div=[class=col-lg-9 col-sm-6]')[0]->lastChild()->innertext);
                     }),
                     'score' => try_catch_null(function () use ($row) {
-                        return $row->find('span[class=severityDetail] > a')[0]->innertext == 'N/A' ? 'N/A' : strtolower(explode(' ', $row->find('span[class=severityDetail] > a')[0]->innertext)[0]);
+                        return $row->find('span[class=severityDetail] > a')[0]->innertext == 'N/A' ? null : strtolower(explode(' ', $row->find('span[class=severityDetail] > a')[0]->innertext)[0]);
                     }),
                     'score_desc' => try_catch_null(function () use ($row) {
                         return $row->find('span[class=severityDetail] > a')[0]->innertext == 'N/A' ? null : strtolower(explode(' ', $row->find('span[class=severityDetail] > a')[0]->innertext)[1]);
@@ -128,6 +132,117 @@ class Doc extends Model
     public function score()
     {
         return $this->content->score->where('score_desc','!=',NULL)->first();
+    }
+
+    //--------------Scopes--------------
+    public function scopeSortById($query,$id=null)
+    {
+        if($id && ($id == 'asc' || $id == 'desc'))
+        {
+            return $query->orderBy('id',$id);
+        }else{
+            return $query;
+        }
+    }
+
+    public function scopeSortByName($query,$id=null)
+    {
+        if($id && ($id == 'asc' || $id == 'desc'))
+        {
+            return $query->orderBy('slug',$id);
+        }else{
+            return $query;
+        }
+    }
+    public function scopeSortByYear($query,$id=null)
+    {
+        if($id && ($id == 'asc' || $id == 'desc'))
+        {
+            return $query->orderBy('year',$id);
+        }else{
+            return $query;
+        }
+    }
+    public function scopeSortByMonth($query,$id=null)
+    {
+        if($id && ($id == 'asc' || $id == 'desc'))
+        {
+            return $query->orderBy('month',$id);
+        }else{
+            return $query;
+        }
+    }
+    public function scopeSortByScore($query,$id=null)
+    {
+        if($id && ($id == 'asc' || $id == 'desc'))
+        {
+            if($id== 'asc')
+            {
+                $id = 0;
+            }else{
+                $id = 10;
+            }
+            return $query->whereHas('content', function ( $_query) use ($id) {
+                 $_query->whereHas('score', function ( $q) use ($id) {
+                    $q->where('score','=',$id);
+                });
+            });
+        }else{
+            return $query;
+        }
+    }
+
+    public function scopeSearch($query,$key=null,$columns=null)
+    {
+        if($key && $columns)
+        {
+            if(in_array(1,$columns))
+            {
+                $query = $query->where('id','=',$key);
+            }
+            if(in_array(2,$columns))
+            {
+                $query = $query->where('slug','like','%'.$key.'%');
+            }
+            if(in_array(3,$columns))
+            {
+                $query = $query->where('year','like','%'.$key.'%');
+            }
+            if(in_array(4,$columns))
+            {
+                try {
+                    if(is_int($key))
+                    {
+                        $month = $key;
+                    }else{
+                        $month = Carbon::parse($key)->month;
+                    }
+                    $query = $query->where('month','=',$month);
+                }catch (\Exception $exception)
+                {
+                    return $query;
+                }
+
+            }
+            if(in_array(5,$columns))
+            {
+                return $query->whereHas('content', function ( $_query) use ($key) {
+                    $_query->whereHas('score', function ( $q) use ($key) {
+                        $q->where('score','=',$key);
+                    });
+                });
+            }
+            if(in_array(6,$columns))
+            {
+                return $query->whereHas('content', function ( $_query) use ($key) {
+                    $_query->whereHas('score', function ( $q) use ($key) {
+                        $q->where('score_desc','=',$key);
+                    });
+                });
+            }
+        }else{
+            return $query;
+        }
     }
 
 

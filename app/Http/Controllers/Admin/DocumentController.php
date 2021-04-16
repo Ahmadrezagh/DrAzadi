@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Content;
 use App\Models\Doc;
+use App\Models\Score;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,9 +30,27 @@ class DocumentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $documents = [];
+        $documents = Doc::query()
+            ->where('id','<=',Content::all()->count())
+            ->sortById($request->sortById)
+            ->sortByName($request->sortByName)
+            ->sortByYear($request->sortByYear)
+            ->sortByMonth($request->sortByMonth)
+            ->sortByScore($request->sortByScore)
+            ->search($request->key,$request->SearchOptions);
+        if(isset($request->paginate) && $request->paginate > 0)
+        {
+            $documents = $documents->paginate($request->paginate)->withPath(url()->full());
+        }
+        elseif(isset($request->paginate) && $request->paginate == 0)
+        {
+            $documents = $documents->get();
+        }
+        else{
+            $documents = $documents->paginate()->withPath(url()->full());
+        }
         return view('admin.documents.index',compact('documents'));
     }
 
