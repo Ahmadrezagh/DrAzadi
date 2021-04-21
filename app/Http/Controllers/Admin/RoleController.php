@@ -21,7 +21,6 @@ class RoleController extends Controller
                 abort(404);
             }
         });
-
     }
     /**
      * Display a listing of the resource.
@@ -30,8 +29,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        $permissions = Permission::all();
+        $roles = Role::where('type','=',0)->get();
+        $permissions = Permission::where('type','=',0)->get();
         return view('admin.admins.roles',compact('roles','permissions'));
 
     }
@@ -55,7 +54,6 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
             'name' => 'required',
         ]);
         $role = new Role();

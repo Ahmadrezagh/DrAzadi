@@ -30,7 +30,7 @@ class HomeController extends Controller
             return view('admin.index');
         }elseif(Auth::user()->isUser())
         {
-            return "Hello User";
+            return view('user.index');
         }
 
     }

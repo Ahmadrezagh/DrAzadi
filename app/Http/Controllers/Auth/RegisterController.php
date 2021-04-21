@@ -55,7 +55,6 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'agreement' => ['required'],
-            'address' => ['required','string']
         ]);
     }
 
@@ -72,11 +71,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        $user->group()->sync(1);
-        Address::create([
-            'user_id' => $user->id,
-            'address' => $data['address']
-        ]);
+        if (setting('defaultRole'))
+        {
+            $user->role()->sync(setting('defaultRole'));
+        }
         return $user;
     }
 }

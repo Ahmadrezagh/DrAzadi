@@ -7,7 +7,7 @@
     active
 @endsection
 @section('title')
-    Roles
+    نقش مدیران
 @endsection
 @section('content')
 

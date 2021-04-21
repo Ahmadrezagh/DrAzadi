@@ -6,6 +6,9 @@
 @section('User')
     active
 @endsection
+@section('title')
+   کاربران
+@endsection
 @section('content')
 
     <!-- Content Wrapper. Contains page content -->
@@ -74,6 +77,15 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">انتخاب نقش</label>
+                                                <select class="form-control" name="role" id="exampleFormControlSelect1">
+                                                    <option value="0"  selected disabled>انتخاب نقش</option>
+                                                    @foreach($roles as $role)
+                                                        <option value="{{$role->name}}">{{$role->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                         <!-- /.card-body -->
 
@@ -97,6 +109,7 @@
                             <tr>
                                 <th>تصویر کاربر</th>
                                 <th>نام</th>
+                                <th>نقش</th>
                                 <th>ایمیل</th>
                                 <th>تاریخ عضویت</th>
                                 <th>عملیات</th>
@@ -111,6 +124,7 @@
                                     <td>
                                         {{$user->name}}
                                     </td>
+                                    <td>{{$user->role()->first()->name ?? '-'}}</td>
                                     <td>{{$user->email}}</td>
                                     <td >
                                         <button class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="{{$user->created_at}}">
@@ -118,11 +132,10 @@
                                         </button>
                                     </td>
                                     <td class="text-center">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fas fa-sliders-h"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
                                                 <button type="button" class="btn btn-success dropdown-item" data-toggle="modal" data-target="#modal-edit{{$user->id}}" ><i  class="fas fa-user-edit"></i>ویرایش</button>
                                                 <button type="button" class="dropdown-item" data-toggle="modal" data-target="#modal-delete{{$user->id}}" ><i style="color:red" class="fas fa-user-minus"></i>حذف</button>
                                             </div>
@@ -201,6 +214,19 @@
                                                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleFormControlSelect1">انتخاب نقش</label>
+                                                            <select class="form-control" name="role" id="exampleFormControlSelect1">
+                                                                <option value="0"  selected disabled>انتخاب نقش</option>
+                                                                @foreach($roles as $role)
+                                                                    <option value="{{$role->name}}"
+                                                                                @if($role->name == $user->role->pluck('name')->first())
+                                                                            selected
+                                                                            @endif
+                                                                    >{{$role->name}}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <!-- /.card-body -->

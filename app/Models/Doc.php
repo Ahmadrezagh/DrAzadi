@@ -192,6 +192,10 @@ class Doc extends Model
         }
     }
 
+    public function translate()
+    {
+        return $this->hasOne(DocTranslate::class);
+    }
     public function scopeSearch($query,$key=null,$columns=null)
     {
         if($key && $columns)

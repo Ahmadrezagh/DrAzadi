@@ -6,6 +6,9 @@
 @section('admins_list')
     active
 @endsection
+@section('title')
+    مدیر ها
+@endsection
 @section('content')
 
     <!-- Content Wrapper. Contains page content -->

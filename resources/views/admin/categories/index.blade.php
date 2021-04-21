@@ -7,7 +7,7 @@
     active
 @endsection
 @section('title')
-    Categories
+    دسته بندی ها
 @endsection
 @section('content')
 

@@ -34,7 +34,7 @@ class AdminController extends Controller
     public function index()
     {
         $admins = User::Admins()->latest()->get();
-        $roles = Role::all();
+        $roles = Role::where('type','=',0)->get();
         return view('admin.admins.index',compact('admins','roles'));
     }
 
@@ -45,7 +45,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        $roles = Role::all();
+        $roles = Role::where('type','=',0)->get();
         return view('admin.admins.create',compact('roles'));
     }
 

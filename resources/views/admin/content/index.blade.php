@@ -5,6 +5,9 @@
 @section('Document')
     active
 @endsection
+@section('title')
+    {{$content->doc->slug}}
+@endsection
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">

@@ -6,6 +6,9 @@
 @section('Document')
     active
 @endsection
+@section('title')
+    داکیومنت ها
+@endsection
 @section('content')
 
     <!-- Content Wrapper. Contains page content -->
@@ -94,6 +97,9 @@
                                 <th><a href="#">لینک منبع</a></th>
                                 <th><a @if(request()->sortByScore && request()->sortByScore == 'asc' ) href="?sortByScore=desc" @else href="?sortByScore=asc" @endif>امتیاز پایه</a></th>
                                 <th><a @if(request()->sortByScore && request()->sortByScore == 'asc' ) href="?sortByScore=desc" @else href="?sortByScore=asc" @endif  >درجه کیفی</a></th>
+                                @if ((Auth::user()->isAdmin() && Auth::user()->can('Documents')) || Auth::user()->isSuperAdmin() )
+                                <th><a href="#">عملیات</a></th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody >
@@ -109,6 +115,9 @@
                                     <td><a class="btn btn-primary" target="_blank" href="{{$doc->nvd_url ?? '#'}}"  >مشاهده</a></td>
                                     <td @if(!$doc->score()) style="color: red" @endif >{{$doc->score()->score ?? 'N/A'}}</td>
                                     <td @if(!$doc->score()) style="color: red" @endif >{{$doc->score()->score_desc ?? 'N/A'}}</td>
+                                    @if ((Auth::user()->isAdmin() && Auth::user()->can('Documents')) || Auth::user()->isSuperAdmin() )
+                                        <td><a href="{{route('translates.show',$doc->id)}}"> @if($doc->translate) ویرایش ترجمه @else ایجاد ترجمه @endif </a></td>
+                                    @endif
                                 </tr>
                             @endforeach
 

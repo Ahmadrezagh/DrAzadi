@@ -28,22 +28,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{(\App\Models\Doc::count())}}</h3>
-
-                                <p>داکیومنت</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="{{route('documents.index')}}" class="small-box-footer">اطلاعات بیشتر <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>{{count(\App\Models\Content::get())}}</h3>
+                                <h3>{{\App\Models\Content::count()}}</h3>
 
                                 <p>محتوای دریافت شده</p>
                             </div>
@@ -56,15 +41,30 @@
                     <!-- ./col -->
                     <div class="col-lg-3 col-6">
                         <!-- small box -->
-                        <div class="small-box bg-warning">
+                        <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{\App\Models\User::count()}}</h3>
-                                <p>کاربران وبسایت</p>
+                                <h3>{{\App\Models\Score::where('score_desc','=','low')->count()}}</h3>
+
+                                <p>موارد با درجه خطر کم</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-person-add"></i>
+                                <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="{{route('users.index')}}" class="small-box-footer">اطلاعات بیشتر <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{route('documents.index')}}?key=low&SearchOptions%5B%5D=6" class="small-box-footer">اطلاعات بیشتر <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{\App\Models\Score::where('score_desc','=','medium')->count()}}</h3>
+                                <p>موارد با درجه خطر متوسط</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-pie-graph"></i>
+                            </div>
+                            <a href="{{route('documents.index')}}?key=medium&SearchOptions%5B%5D=6" class="small-box-footer">اطلاعات بیشتر <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
@@ -72,14 +72,14 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>{{count(\App\Models\Score::where('score_desc','=','high')->get())}}</h3>
+                                <h3>{{\App\Models\Score::where('score_desc','=','high')->count()}}</h3>
 
                                 <p>موارد با درجه خطر بالا</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="{{route('documents.index')}}?sortByScore=desc" class="small-box-footer">اطلاعات بیشتر <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="{{route('documents.index')}}?key=high&SearchOptions%5B%5D=6" class="small-box-footer">اطلاعات بیشتر <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->

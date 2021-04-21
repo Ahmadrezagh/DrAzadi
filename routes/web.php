@@ -28,7 +28,13 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('content','Admin\ContentController');
         Route::resource('users', 'Admin\UserController');
         Route::resource('settings', 'Admin\SettingController');
-
+        Route::resource('translates', 'Admin\TranslateController');
+        Route::resource('userRoles','Admin\UserRoleController');
+    });
+    Route::prefix('user')->name('user.')->group(function () {
+        // User routes
+        Route::resource('documents','User\DocumentController');
+        Route::resource('translate','User\TranslateController');
     });
     // Default
     Route::get('/home', 'HomeController@index')->name('home');

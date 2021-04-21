@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @section('title')
-    register
+    ثبت نام
 @endsection
 @section('content')
 
@@ -50,7 +50,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                                <input onclick="validate()" type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                <input onclick="validate()" type="checkbox" id="agreeTerms" name="agreement" value="agree">
                                 <label for="agreeTerms">
                                     را قبول دارم <a href="#" type="button" data-toggle="modal" data-target="#exampleModal">قوانین</a>
                                 </label>
@@ -65,7 +65,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body text-right">
                                                 {!! setting('terms') !!}
                                             </div>
                                             <div class="modal-footer">

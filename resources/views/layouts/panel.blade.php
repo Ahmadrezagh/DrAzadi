@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{setting('name')}}</title>
+    <title>{{setting('name')}} @if (trim($__env->yieldContent('title'))) | @yield('title')@endif</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -34,7 +34,8 @@
             src: url(/fonts/ttf/iranyekanwebboldfanum.ttf);
         }
     </style>
-    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.15.0/full/ckeditor.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body style="font-family: IranYekan" class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -179,7 +180,7 @@
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                                        <li>
+                                        <li class="nav-item">
                                             <a href="{{route('home')}}" class="nav-link @yield('home')">
 
                                                 <i class="fas fa-home"></i>
@@ -226,7 +227,9 @@
                                                                 <p>داکیومنت ها</p>
                                                             </a>
                                                         </li>
+
                                                 </ul>
+
                                             </li>
                                         @endif
                                         @if ((Auth::user()->isAdmin() && Auth::user()->can('User')) || Auth::user()->isSuperAdmin() )
@@ -242,6 +245,11 @@
                                                     <li class="nav-item">
                                                         <a href="{{route('users.index')}}" class="nav-link @yield('Users')">
                                                             <p>کاربران</p>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a href="{{route('userRoles.index')}}" class="nav-link @yield('userRoles')">
+                                                            <p>نقش ها</p>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -269,7 +277,7 @@
                                             </li>
                                         @endif
                     @if ((Auth::user()->isAdmin() && Auth::user()->can('ContentUpdate')) || Auth::user()->isSuperAdmin() )
-                                        <li>
+                                        <li class="nav-item">
                                             <a href="{{url('/api/cron/fetch/content/')}}" class="nav-link">
 
                                                 <i class="fas fa-file-upload"></i>
@@ -278,6 +286,27 @@
                                                 </p>
                                             </a>
                                         </li>
+                    @endif
+                    <!--    User Part -->
+                    @if ((Auth::user()->isUser() && Auth::user()->can('doc'))  )
+                        <li class="nav-item has-treeview ">
+                            <a href="#" class="nav-link @yield('Documents')">
+                                <i class="fas fa-clipboard-list"></i>
+                                <p>
+                                    اطلاعات استخراج شده
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{route('user.documents.index')}}" class="nav-link @yield('Document')">
+                                        <p>داکیومنت ها</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </li>
                     @endif
                                         <li class="nav-item">
                                             <a class="nav-link btn btn-danger" href="{{ route('logout') }}"
@@ -305,10 +334,10 @@
     <footer class="main-footer" >
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-           طراحی و توسعه : <a href="https://ahmadrezaghanbari.ir">احمدرضا قنبری</a>
+           طراحی و توسعه : <a href="http://cert.pgu.ac.ir/">مرکز آپا بوشهر</a>
         </div>
         <!-- Default to the left -->
-        <strong>تمامی حقوق مادی و معنوی این تارنما برای تیم فنی دکتر آزادی مطلق محفوظ است</strong>
+        <strong>تمامی حقوق مادی و معنوی این تارنما برای تیم فنی مرکز آپا بوشهر محفوظ است</strong>
     </footer>
 
     <!-- Control Sidebar -->
@@ -371,14 +400,14 @@
   </script>
 
 <script src="{{URL::to('/')}}/dist/js/demo.js"></script>
-<!-- image uploader -->
-<script type="text/javascript" src="{{URL::to('/')}}/image_uploader/image_uploader.min.js"></script>
-<!-- Tags input -->
-<script src="{{URL::to('/')}}/tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-<script src="{{URL::to('/')}}/tagsinput/dist/bootstrap-tagsinput/bootstrap-tagsinput-angular.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <!-- Page script -->
 @yield('js')
-
+<script>
+    $("textarea").each(function(){
+        CKEDITOR.replace( this );
+    });
+</script>
 </body>
 </html>
