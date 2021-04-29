@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'cron'], function () {
     Route::get('/fetch/docs/{fromYear?}', 'CronController@fetchDocs')->name('docs.update');
-    Route::get('/fetch/content/{docId?}', 'CronController@fetchContent')->name('content.update');
+    Route::get('/fetch/content/{docId?}', 'CronController@fetchContent')->name('api.content.update');
 });
 Route::get('documents',function (Request $request){
 

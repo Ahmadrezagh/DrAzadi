@@ -23,7 +23,7 @@ class CreateContentsTable extends Migration
             $table->text('current_description')->nullable();
             $table->text('analysis_description')->nullable();
             $table->text('hyperlink')->nullable();
-            $table->text('hyperlink_table')->nullable();
+            $table->longText('hyperlink_table')->nullable();
             $table->text('technical_table')->nullable();
             $table->text('configurations_table')->nullable();
             $table->text('change_history')->nullable();

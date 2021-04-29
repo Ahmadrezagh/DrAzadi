@@ -65,8 +65,8 @@
                                         @endforeach
                                     </td>
                                     <td >
-                                        <button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="{{$user->created_at}}">
-                                            {{\Morilog\Jalali\Jalalian::forge($user->created_at)->format('%A, %d %B %y')}}
+                                        <button class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="{{$user->created_at}}">
+                                            {{\Morilog\Jalali\Jalalian::forge($user->created_at)->format('%A, %d %B %Y')}}
                                         </button>
                                     </td>
                                     <td class="text-center">
@@ -98,9 +98,15 @@
                                                     @method('PATCH')
                                                     <input type="hidden" name="id" value="{{$user->id}}">
                                                     <div class="card-body">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">نام</label>
-                                                            <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name" required value="{{$user->name}}" required>
+                                                        <div class="row ">
+                                                            <div class="form-group col-6">
+                                                                <label for="exampleInputEmail1">نام</label>
+                                                                <input type="text" class="form-control @error('first_name') is-invalid @enderror" value="{{$user->first_name}}" name="first_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام " required>
+                                                            </div>
+                                                            <div class="form-group col-6">
+                                                                <label for="exampleInputEmail1">نام خانوادگی</label>
+                                                                <input type="text" class="form-control @error('last_name') is-invalid @enderror" value="{{$user->last_name}}" name="last_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام خانوادگی" required>
+                                                            </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">ایمیل</label>
@@ -174,8 +180,8 @@
                                         @endforeach
                                     </td>
                                     <td >
-                                        <button class="btn btn-default" data-toggle="tooltip" data-placement="top" title="{{$user->created_at}}">
-                                            {{\Morilog\Jalali\Jalalian::forge($user->created_at)->format('%A, %d %B %y')}}
+                                        <button class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="{{$user->created_at}}">
+                                            {{\Morilog\Jalali\Jalalian::forge($user->created_at)->format('%A, %d %B %Y')}}
                                         </button>
                                     </td>
                                     <td class="text-center">
@@ -238,9 +244,15 @@
                                                     @method('PATCH')
                                                     <input type="hidden" name="id" value="{{$user->id}}">
                                                     <div class="card-body">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">نام</label>
-                                                            <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name" required value="{{$user->name}}" required>
+                                                        <div class="row ">
+                                                            <div class="form-group col-6">
+                                                                <label for="exampleInputEmail1">نام</label>
+                                                                <input type="text" class="form-control @error('first_name') is-invalid @enderror" value="{{$user->first_name}}" name="first_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام " required>
+                                                            </div>
+                                                            <div class="form-group col-6">
+                                                                <label for="exampleInputEmail1">نام خانوادگی</label>
+                                                                <input type="text" class="form-control @error('last_name') is-invalid @enderror" value="{{$user->last_name}}" name="last_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام خانوادگی" required>
+                                                            </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">ایمیل</label>

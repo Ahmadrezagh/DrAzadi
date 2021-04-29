@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>
-      @yield('title') @if (trim($__env->yieldContent('title'))) | @yield('title')@endif
+      {{setting('name')}} @if (trim($__env->yieldContent('title'))) | @yield('title')@endif
   </title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,8 +25,12 @@
             src: url(/fonts/ttf/iranyekanwebboldfanum.ttf);
         }
     </style>
+    <!-- Include this in your blade layout -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- Include this in your blade layout -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body style="font-family: IranYekan" class="hold-transition login-page">
+@include('sweet::alert')
 @yield('content')
 
 <!-- jQuery -->

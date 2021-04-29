@@ -19,7 +19,7 @@ class CreateScoresTable extends Migration
             $table->foreign('content_id')->references('id')->on('contents');
             $table->string('title')->nullable();
             $table->string('source')->nullable();
-            $table->string('score')->nullable();
+            $table->double('score')->nullable();
             $table->string('score_desc')->nullable();
             $table->string('vector')->nullable();
             $table->string('version')->nullable();

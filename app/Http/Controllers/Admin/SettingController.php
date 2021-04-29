@@ -107,7 +107,7 @@ class SettingController extends Controller
                 }
             }
         }
-        alert()->success('Edit completed');
+        alert()->success('تنظیمات با موفقیت ویرایش شد');
         return back();
     }
 

@@ -22,4 +22,19 @@ class Permission extends Model
     {
         return $this->belongsToMany(Role::class);
     }
+
+    public function getParent()
+    {
+        return $this->where('id','=',$this->parent_id)->first();
+    }
+
+    public function getChildren()
+    {
+        return $this->where('parent_id','=',$this->id)->get();
+    }
+
+    public function scopeParents($query)
+    {
+        return $query->where('parent_id',null);
+    }
 }

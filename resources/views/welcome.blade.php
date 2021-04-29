@@ -79,11 +79,11 @@
 
     <div class="content">
         <div class="title m-b-md">
-            پروژه دکتر آزادی مطلق
+            {{setting('name')}}
         </div>
 
         <div class="links">
-            <a href="https://Ahmadrezaghanbari.ir">طراحی و توسعه : احمدرضا قنبری</a>
+            <a href="http://cert.pgu.ac.ir">طراحی و توسعه : مرکز آپا خلیج فارس بوشهر</a>
         </div>
     </div>
 </div>

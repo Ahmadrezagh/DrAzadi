@@ -58,7 +58,8 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $validatedData = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8' ],
             're_password' => ['required', 'string', 'min:8'],
@@ -73,7 +74,9 @@ class AdminController extends Controller
             return back()->withErrors($validatedData)->withInput();
         }
          $user = User::create([
-        'name' => $request->name,
+        'first_name' => $request->first_name,
+        'last_name' => $request->last_name,
+        'name' => $request->first_name." ".$request->last_name,
         'email' => $request->email,
         'type_id' => '2',
         'password' => Hash::make($request->password),
@@ -83,7 +86,7 @@ class AdminController extends Controller
         {
            $user->refreshRoles($request->role);
         }
-        alert()->success('Admin created successfully');
+        alert()->success('مدیر با موفقیت ایجاد شد');
         return back();
     }
 
@@ -119,7 +122,8 @@ class AdminController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['nullable', 'string', 'min:8' ],
             're_password' => ['nullable', 'string', 'min:8'],
@@ -138,12 +142,14 @@ class AdminController extends Controller
         {
             if($request->password != $request->re_password)
         {
-            alert()->warning('Password and Retype password not matched');
+            alert()->warning('رمز عبور و تکرار آن با یکدیگر برابر نیست');
             return back()->withErrors($validatedData)->withInput();
         }
         }
          User::where('id','=',$id)->update([
-        'name' => $request->name,
+             'first_name' => $request->first_name,
+             'last_name' => $request->last_name,
+             'name' => $request->first_name." ".$request->last_name,
         'email' => $request->email,
         'password' => ($request->password != null)? Hash::make($request->password) : User::where('id','=',$id)->pluck('password')->first(),
         'profile' => ($request->img) ? $profile_img : User::where('id','=',$id)->pluck('profile')->first()
@@ -153,7 +159,7 @@ class AdminController extends Controller
         {
            $user->refreshRoles($request->role);
         }
-        alert()->success('Admin edited successfully');
+        alert()->success('مدیر با موفقیت ویرایش شد');
         return back();
     }
 
@@ -166,7 +172,7 @@ class AdminController extends Controller
     public function destroy($id)
     {
         User::where('id',$id)->delete();
-        alert()->success('Admin deleted successfully');
+        alert()->success('مدبر با موفقیت حذف شد');
         return back();
     }
 }

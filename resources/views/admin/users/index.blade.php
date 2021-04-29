@@ -52,9 +52,15 @@
                                     <form  method="POST" action="{{route('users.store')}}"  enctype="multipart/form-data">
                                         @csrf
                                         <div class="card-body">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">نام</label>
-                                                <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="نام کاربر را وارد کنید" required >
+                                            <div class="row ">
+                                                <div class="form-group col-6">
+                                                    <label for="exampleInputEmail1">نام</label>
+                                                    <input type="text" class="form-control @error('first_name') is-invalid @enderror" value="{{old('first_name')}}" name="first_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام " required>
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <label for="exampleInputEmail1">نام خانوادگی</label>
+                                                    <input type="text" class="form-control @error('last_name') is-invalid @enderror" value="{{old('last_name')}}" name="last_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام خانوادگی" required>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">ایمیل</label>
@@ -110,6 +116,7 @@
                                 <th>تصویر کاربر</th>
                                 <th>نام</th>
                                 <th>نقش</th>
+                                <th>وضعیت</th>
                                 <th>ایمیل</th>
                                 <th>تاریخ عضویت</th>
                                 <th>عملیات</th>
@@ -125,10 +132,17 @@
                                         {{$user->name}}
                                     </td>
                                     <td>{{$user->role()->first()->name ?? '-'}}</td>
+                                    <td>
+                                        @if($user->active == 1)
+                                            <a data-toggle="tooltip" data-placement="top" title="مسدود سازی" href="{{route('users.change.status',$user->id)}}" class="btn btn-success" >فعال</a>
+                                        @else
+                                            <a data-toggle="tooltip" data-placement="top" title="فعال سازی"  href="{{route('users.change.status',$user->id)}}" class="btn btn-danger"> مسدود </a>
+                                        @endif
+                                    </td>
                                     <td>{{$user->email}}</td>
                                     <td >
                                         <button class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="{{$user->created_at}}">
-                                            {{\Morilog\Jalali\Jalalian::forge($user->created_at)->format('%A, %d %B %y')}}
+                                            {{\Morilog\Jalali\Jalalian::forge($user->created_at)->format('%A, %d %B %Y')}}
                                         </button>
                                     </td>
                                     <td class="text-center">
@@ -190,9 +204,15 @@
                                                     @method('PATCH')
                                                     <input type="hidden" name="id" value="{{$user->id}}">
                                                     <div class="card-body">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">نام</label>
-                                                            <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name" required value="{{$user->name}}" required>
+                                                        <div class="row ">
+                                                            <div class="form-group col-6">
+                                                                <label for="exampleInputEmail1">نام</label>
+                                                                <input type="text" class="form-control @error('first_name') is-invalid @enderror" value="{{$user->first_name}}" name="first_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام " required>
+                                                            </div>
+                                                            <div class="form-group col-6">
+                                                                <label for="exampleInputEmail1">نام خانوادگی</label>
+                                                                <input type="text" class="form-control @error('last_name') is-invalid @enderror" value="{{$user->last_name}}" name="last_name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="نام خانوادگی" required>
+                                                            </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">آدرس ایمیل</label>

@@ -49,7 +49,7 @@ class DocumentController extends Controller
             $documents = $documents->get();
         }
         else{
-            $documents = $documents->paginate()->withPath(url()->full());
+            $documents = $documents->orderBy('id','desc')->paginate()->withPath(url()->full());
         }
         return view('admin.documents.index',compact('documents'));
     }
@@ -64,6 +64,46 @@ class DocumentController extends Controller
         //
     }
 
+    public function type(Request $request,$type)
+    {
+        if($type > 0 && $type < 4) {
+            $pageName = null;
+            if ($type == 1)
+            {
+                $pageName = 'آسیب پذیری های با درجه کم';
+            }
+            if ($type == 2)
+            {
+                $pageName = 'آسیب پذیری های با درجه متوسط';
+            }
+            if ($type == 3)
+            {
+                $pageName = 'آسیب پذیری های با درجه بالا';
+            }
+            $documents = Doc::query()
+                ->where('id','<=',Content::all()->count())
+                ->default($type)
+                ->sortById($request->sortById)
+                ->sortByName($request->sortByName)
+                ->sortByYear($request->sortByYear)
+                ->sortByMonth($request->sortByMonth)
+                ->sortByScore($request->sortByScore)
+                ->search($request->key,$request->SearchOptions);
+            if(isset($request->paginate) && $request->paginate > 0)
+            {
+                $documents = $documents->paginate($request->paginate)->withPath(url()->full());
+            }
+            elseif(isset($request->paginate) && $request->paginate == 0)
+            {
+                $documents = $documents->get();
+            }
+            else{
+                $documents = $documents->orderBy('id','desc')->paginate()->withPath(url()->full());
+            }
+            return view('admin.documents.index',compact('documents','pageName'));
+        }
+        return abort(404);
+    }
     /**
      * Store a newly created resource in storage.
      *

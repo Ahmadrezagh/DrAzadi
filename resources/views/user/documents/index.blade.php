@@ -6,6 +6,9 @@
 @section('Document')
     active
 @endsection
+@section('title')
+    @if(isset($pageName)) {{$pageName}} @else داکیومنت ها @endif
+@endsection
 @section('content')
 
     <!-- Content Wrapper. Contains page content -->
@@ -15,7 +18,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">داکیومنت</h1>
+                        <h1 class="m-0 text-dark"> @if(isset($pageName)) {{$pageName}} @else گزارش ها @endif </h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -76,6 +79,14 @@
                                         </label>
                                     </div>
                                     @endif
+                                    @if(Auth::user()->can('doc_source'))
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="7" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(7,request()->SearchOptions)) checked @endif>
+                                            <label class="form-check-label" for="defaultCheck1">
+                                                منبع
+                                            </label>
+                                        </div>
+                                     @endif
                                     @if(Auth::user()->can('doc_score'))
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="5" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(5,request()->SearchOptions)) checked @endif>
@@ -84,7 +95,7 @@
                                         </label>
                                     </div>
                                     @endif
-                                    @if(Auth::user()->can('doc_score_desc'))
+                                    @if(Auth::user()->can('doc_score_desc') && !isset($pageName))
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="6" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(6,request()->SearchOptions)) checked @endif>
                                         <label class="form-check-label" for="defaultCheck1">

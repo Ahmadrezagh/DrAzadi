@@ -56,22 +56,25 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedData = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8' ],
             're_password' => ['required', 'string', 'min:8'],
         ]);
         if($validatedData->fails()){
-            alert()->warning("something wen't wrong...");
+            alert()->warning("فرایند با مشکل روبرو شد");
             return back()->withErrors($validatedData)->withInput();
         }
         if($request->password != $request->re_password)
         {
-            alert()->warning('Password and Retype password not matched');
+            alert()->warning('رمز عبور و تکرار آن با یکدیگر برابر نیستند');
             return back()->withErrors($validatedData)->withInput();
         }
         $user = User::create([
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'name' => $request->first_name." ".$request->last_name,
             'email' => $request->email,
             'type_id' => '3',
             'password' => Hash::make($request->password),
@@ -80,7 +83,7 @@ class UserController extends Controller
         {
             $user->refreshRoles($request->role);
         }
-        alert()->success('User created successfully');
+        alert()->success('کاربر با موفقیت ایجاد شد');
         return back();
     }
 
@@ -106,6 +109,24 @@ class UserController extends Controller
         //
     }
 
+    public function changeStatus($id)
+    {
+        $user = User::findOrFail($id);
+        if($user->active == 1)
+        {
+            $user->update([
+                'active' => 0
+            ]);
+            alert()->success('کاربر با موفقیت مسدود شد');
+        }else{
+
+            $user->update([
+                'active' => 1
+            ]);
+            alert()->success('کاربر با موفقیت فعال شد');
+        }
+        return back();
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -116,14 +137,15 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['nullable', 'string', 'min:8' ],
             're_password' => ['nullable', 'string', 'min:8'],
             'img' => 'image|mimes:jpeg,jpg,png',
         ]);
         if($validatedData->fails()){
-            alert()->warning("something wen't wrong...");
+            alert()->warning("فرایند با مشکل روبرو شد");
             return back()->withErrors($validatedData)->withInput();
         }
         if($request->img)
@@ -135,12 +157,14 @@ class UserController extends Controller
         {
             if($request->password != $request->re_password)
             {
-                alert()->warning('Password and Retype password not matched');
+                alert()->warning('رمز عبور و تکرار آن با یکدیگر برابر نیست');
                 return back()->withErrors($validatedData)->withInput();
             }
         }
          User::where('id','=',$id)->update([
-            'name' => $request->name,
+             'first_name' => $request->first_name,
+             'last_name' => $request->last_name,
+             'name' => $request->first_name." ".$request->last_name,
             'email' => $request->email,
             'password' => ($request->password != null)? Hash::make($request->password) : User::where('id','=',$id)->pluck('password')->first(),
             'profile' => ($request->img) ? $profile_img : User::where('id','=',$id)->pluck('profile')->first()
@@ -150,7 +174,7 @@ class UserController extends Controller
         {
             $user->refreshRoles($request->role);
         }
-        alert()->success('User edited successfully');
+        alert()->success('کاربر با موفقیت ویرایش شد');
         return back();
     }
 
@@ -163,7 +187,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::where('id',$id)->delete();
-        alert()->success('User deleted successfully');
+        alert()->success('کاربر با موفقیت حذف شد');
         return back();
     }
 }

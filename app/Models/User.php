@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Notifications\CVENotification;
 use App\Services\Permission\Traits\HasPermissions;
 use App\Services\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,11 +22,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'first_name',
+        'last_name',
         'name',
         'email',
         'password',
         'profile',
-        'type_id'
+        'type_id',
+        'active'
     ];
 
     /**
@@ -92,4 +97,38 @@ class User extends Authenticatable
         return $this->profile ?? '/uploads/profiles/default/user.png';
     }
 
+    public function default()
+    {
+        return $this->hasOne(UserDefault::class);
+    }
+
+    public function details()
+    {
+        return $this->hasOne(UserDetail::class);
+    }
+
+    public function upgradeRequests()
+    {
+        return $this->hasMany(UpgradeRequest::class);
+    }
+    public function activeUpgradeRequest()
+    {
+        return $this->hasOne(UpgradeRequest::class)->where('status',0);
+    }
+
+    public function sendCVEAlertNotification(Score $score)
+    {
+        if($this->details && $score->score_desc)
+            if($this->can($score->score_desc.'_mail'))
+                $this->notify(New CVENotification(decrypt($this->details->mail),$score));
+    }
+
+    public static function scopeHasDocMail(Builder $query)
+    {
+        return $query->whereHas('role', function ( $query) {
+                $query->whereHas('permission', function ( $_query) {
+                    $_query->where('name', '=', 'mail');
+                });
+        });
+    }
 }

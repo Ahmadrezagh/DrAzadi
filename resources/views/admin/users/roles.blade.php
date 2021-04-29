@@ -34,11 +34,11 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#modal-create">ایجاد نقش جدید</button>
+                        <button class="btn btn-primary create-btn" data-toggle="modal" data-target="#modal-create">ایجاد نقش جدید</button>
 
                         <!-- Create Modal -->
                         <div class="modal fade" id="modal-create">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h4 class="modal-title">ایجاد نقش جدید</h4>
@@ -56,14 +56,32 @@
                                                     <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="نام نقش" required>
                                                 </div>
                                                 <div class="row col-md-12">
+                                                    <div class="form-check col-md-12">
+                                                        <input class="form-check-input"  id="checkAllCreate" type="checkbox" >
+                                                        <label class="form-check-label" for="checkAllCreate">
+                                                            <h4>انتخاب همه</h4>
+                                                        </label>
+                                                    </div>
                                                     @foreach($permissions as $permission)
-                                                        <div class="form-check col-md-6">
-                                                            <input class="form-check-input" name="permissions[]" type="checkbox" value="{{ $permission->name }}" id="defaultCheck1">
+                                                        <div class="form-check col-12 mt-3">
+                                                            <input class="form-check-input allCreate" name="permissions[]" type="checkbox" value="{{ $permission->name }}" id="defaultCheck1">
                                                             <label class="form-check-label" for="defaultCheck1">
-                                                                {{$permission->persian_name}}
+                                                               <h5> {{$permission->persian_name}}</h5>
                                                             </label>
+                                                            <div class="row">
+                                                                @foreach($permission->getChildren() as $child)
+                                                                    <div class="form-check col-md-6">
+                                                                        <input class="form-check-input allCreate" name="permissions[]" type="checkbox" value="{{ $child->name }}" id="defaultCheck1">
+                                                                        <label class="form-check-label" for="defaultCheck1">
+                                                                            {{$child->persian_name}}
+                                                                        </label>
+                                                                    </div>
+                                                                @endforeach
+                                                            </div>
+
                                                         </div>
                                                     @endforeach
+
                                                 </div>
                                             </div>
                                             <!-- /.card-body -->
@@ -140,7 +158,7 @@
                                 <!-- /.modal -->
                                 <!-- Change Modal -->
                                 <div class="modal fade" id="modal-edit{{$role->id}}">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title">ویرایش نقش</h4>
@@ -160,12 +178,28 @@
                                                             <input name="name" type="text" class="form-control" id="exampleInputEmail1" placeholder="نام نقش" required value="{{$role->name}}" required>
                                                         </div>
                                                         <div class="row col-md-12">
-                                                        @foreach($permissions as $permission)
-                                                            <div class="form-check col-md-6">
-                                                                <input class="form-check-input" name="permissions[]" type="checkbox" value="{{ $permission->name }}" @if($role->permissions){{ $role->permissions->contains($permission) ? 'checked' : '' }}@endif id="defaultCheck1">
-                                                                <label class="form-check-label" for="defaultCheck1">
-                                                                    {{$permission->persian_name}}
+                                                            <div class="form-check col-md-12">
+                                                                <input class="form-check-input"  id="checkAll" type="checkbox" >
+                                                                <label class="form-check-label" for="checkAll">
+                                                                    <h5>انتخاب همه</h5>
                                                                 </label>
+                                                            </div>
+                                                        @foreach($permissions as $permission)
+                                                            <div class="form-check col-md-12 mt-3">
+                                                                <input class="form-check-input all" name="permissions[]" type="checkbox" value="{{ $permission->name }}" @if($role->permissions){{ $role->permissions->contains($permission) ? 'checked' : '' }}@endif id="defaultCheck1">
+                                                                <label class="form-check-label" for="defaultCheck1">
+                                                                    <h5>{{$permission->persian_name}}</h5>
+                                                                </label>
+                                                                <div class="row">
+                                                                    @foreach($permission->getChildren() as $child)
+                                                                        <div class="form-check col-md-6">
+                                                                            <input class="form-check-input all" name="permissions[]" type="checkbox" value="{{ $child->name }}" @if($role->permissions){{ $role->permissions->contains($child) ? 'checked' : '' }}@endif id="defaultCheck1">
+                                                                            <label class="form-check-label" for="defaultCheck1">
+                                                                                {{$child->persian_name}}
+                                                                            </label>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
                                                             </div>
                                                         @endforeach
                                                         </div>
@@ -196,4 +230,28 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@endsection
+@section('js')
+    <script>
+        $('#checkAll').click(function () {
+            checked = $("#checkAll").prop('checked')
+            if(checked)
+            {
+                $(".all").prop("checked",true)
+            }else{
+
+                $(".all").prop("checked",false)
+            }
+        })
+        $('#checkAllCreate').click(function () {
+            checked = $("#checkAllCreate").prop('checked')
+            if(checked)
+            {
+                $(".allCreate").prop("checked",true)
+            }else{
+
+                $(".allCreate").prop("checked",false)
+            }
+        })
+    </script>
 @endsection

@@ -7,10 +7,9 @@
     active
 @endsection
 @section('title')
-    داکیومنت ها
+    @if(isset($pageName)) {{$pageName}} @else داکیومنت ها @endif
 @endsection
 @section('content')
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -18,7 +17,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">داکیومنت</h1>
+                        <h1 class="m-0 text-dark">@if(isset($pageName)) {{$pageName}} @else گزارش ها @endif</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -71,17 +70,74 @@
                                     </label>
                                 </div>
                                 <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="7" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(7,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        منبع
+                                    </label>
+                                </div>
+                                <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="5" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(5,request()->SearchOptions)) checked @endif>
                                     <label class="form-check-label" for="defaultCheck1">
                                         امتیاز پایه
                                     </label>
                                 </div>
+                                @if(!isset($pageName))
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="6" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(6,request()->SearchOptions)) checked @endif>
                                     <label class="form-check-label" for="defaultCheck1">
                                         درجه کیفی
                                     </label>
                                 </div>
+                                @endif
+                            </div>
+                            <hr>
+                            <h5 class="mt-3">فیلتر</h5>
+
+                            <div class=" col-12 row">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="1"  id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(1,request()->SearchOptions)) checked @endif >
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        شناسه پایگاه داده
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="2" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(2,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        نام
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="3" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(3,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        سال
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="4" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(4,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        ماه
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="7" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(7,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        منبع
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="5" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(5,request()->SearchOptions)) checked @endif>
+                                    <label class="form-check-label" for="defaultCheck1">
+                                        امتیاز پایه
+                                    </label>
+                                </div>
+                                @if(!isset($pageName))
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="6" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(6,request()->SearchOptions)) checked @endif>
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            درجه کیفی
+                                        </label>
+                                    </div>
+                                @endif
                             </div>
                         </form>
                     </div>

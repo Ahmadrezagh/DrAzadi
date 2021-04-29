@@ -36,8 +36,11 @@
     </style>
     <script src="https://cdn.ckeditor.com/4.15.0/full/ckeditor.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Include this in your blade layout -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body style="font-family: IranYekan" class="hold-transition sidebar-mini layout-fixed">
+@include('sweet::alert')
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -189,6 +192,14 @@
                                                 </p>
                                             </a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a @if(Auth::user()->isUser()) href="{{route('user.profile.index')}}" @else href="{{route('profile.index')}}" @endif class="nav-link @yield('profile')">
+                                                <i class="fas fa-user"></i>
+                                                <p>
+                                                    پروفایل
+                                                </p>
+                                            </a>
+                                        </li>
                                         @if ((Auth::user()->isAdmin() && Auth::user()->can('Admin')) || Auth::user()->isSuperAdmin() )
                                         <li class="nav-item has-treeview ">
                                             <a href="#" class="nav-link @yield('admins')">
@@ -227,9 +238,7 @@
                                                                 <p>داکیومنت ها</p>
                                                             </a>
                                                         </li>
-
                                                 </ul>
-
                                             </li>
                                         @endif
                                         @if ((Auth::user()->isAdmin() && Auth::user()->can('User')) || Auth::user()->isSuperAdmin() )
@@ -251,6 +260,12 @@
                                                         <a href="{{route('userRoles.index')}}" class="nav-link @yield('userRoles')">
                                                             <p>نقش ها</p>
                                                         </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{route('upgradeRequest.index')}}" class="nav-link @yield('userRoles')">
+                                                            <p>درخواست های ارتقا</p>
+                                                        </a>
+
                                                     </li>
                                                 </ul>
                                             </li>
@@ -308,6 +323,16 @@
 
                         </li>
                     @endif
+                    @if (Auth::user()->isUser())
+                        <li class="nav-item">
+                            <a href="{{route('user.upgradeRequest.index')}}" class="nav-link @yield('upgradeRequest')">
+                                <i class="fas fa-sort-amount-up"></i>
+                                <p>
+                                    درخواست ارتقا
+                                </p>
+                            </a>
+                        </li>
+                    @endif
                                         <li class="nav-item">
                                             <a class="nav-link btn btn-danger" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
@@ -334,10 +359,10 @@
     <footer class="main-footer" >
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-           طراحی و توسعه : <a href="http://cert.pgu.ac.ir/">مرکز آپا بوشهر</a>
+           طراحی و توسعه : <a href="http://cert.pgu.ac.ir">مرکز آپا خلیج فارس بوشهر</a>
         </div>
         <!-- Default to the left -->
-        <strong>تمامی حقوق مادی و معنوی این تارنما برای تیم فنی مرکز آپا بوشهر محفوظ است</strong>
+        <strong>تمامی حقوق مادی و معنوی این تارنما برای تیم فنی مرکز آپا خلیج فارس بوشهر محفوظ است</strong>
     </footer>
 
     <!-- Control Sidebar -->

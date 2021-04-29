@@ -15,13 +15,23 @@
 
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
-                    <div class="input-group mb-3">
-                        <input id="name" type="text" class="form-control text-right @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="نام و نام خانوادگی" autofocus>
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                    <div class="row">
+                        <div class="input-group mb-3 col-6">
+                            <input id="last_name" type="text" class="form-control text-right @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" placeholder="نام خانوادگی" autofocus>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                </div>
                             </div>
                         </div>
+                        <div class="input-group mb-3 col-6">
+                            <input id="first_name" type="text" class="form-control text-right @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" placeholder="نام " autofocus>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="input-group mb-3">
                         <input id="email" type="email" class="form-control text-right @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="ایمیل" autocomplete="email">

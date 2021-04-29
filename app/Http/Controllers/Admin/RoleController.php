@@ -65,7 +65,7 @@ class RoleController extends Controller
             alert()->warning('warning', $exception->getCode());
             return redirect()->back();
         }
-        alert()->success('Role created successfully');
+        alert()->success('نقش با موفقیت ایجاد شد');
         return back();
     }
 
@@ -107,7 +107,7 @@ class RoleController extends Controller
         ]);
         $role->update($request->only('name'));
         $role->refreshPermissions($request->permissions);
-        alert()->success('Role edited successfully');
+        alert()->success('نقش با موقیت ویرایش شد');
         return back();
     }
 
@@ -120,7 +120,7 @@ class RoleController extends Controller
     public function destroy($id)
     {
         Role::findOrFail($id)->delete();
-        alert()->success('Role deleted successfully');
+        alert()->success('نقش با موفقیت حذف شد');
         return back();
     }
 }

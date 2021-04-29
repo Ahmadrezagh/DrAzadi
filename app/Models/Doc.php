@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\DocumentRegistered;
 use http\Env\Request;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,6 +23,7 @@ class Doc extends Model
     {
         return $this->hasOne(Content::class);
     }
+
 
 
 
@@ -244,10 +246,44 @@ class Doc extends Model
                     });
                 });
             }
+            if(in_array(7,$columns))
+            {
+                return $query->whereHas('content', function ( $_query) use ($key) {
+                    $_query->where('source','=',strtoupper($key));
+                });
+            }
         }else{
             return $query;
         }
     }
+
+    public function scopeDefault($query,$default = 0)
+    {
+        $key = null;
+        if($default > 0 )
+        {
+            if($default == 1)
+            {
+                $key = 'low';
+            }
+            if($default == 2)
+            {
+                $key = 'medium';
+            }
+            if($default == 3)
+            {
+                $key = 'high';
+            }
+            return $query->whereHas('content', function ( $_query) use ($key) {
+                $_query->whereHas('score', function ( $q) use ($key) {
+                    $q->where('score_desc','=',$key);
+                });
+            });
+        }else{
+            return $query;
+        }
+    }
+
 
 
 }

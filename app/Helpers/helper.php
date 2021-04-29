@@ -17,7 +17,7 @@ function upload_file($file,$file_path = null,$name = null )
         $file_name = $name.".".$file->getClientOriginalExtension();
     }else
     {
-        $file_name = $file->getClientOriginalName;
+        $file_name = $file->getClientOriginalName();
     }
     // Upload Image
     $file->move(public_path($path), $file_name);
@@ -69,3 +69,19 @@ if (!function_exists('try_catch_null')) {
 }
 
 
+function validatePhoneIR($phone)
+{
+    $status = 0;
+    $pattern = null;
+    if(strlen($phone) == 10)
+    {
+        $pattern = "/(9)[0-9]{9}/";
+        $status = preg_match($pattern,$phone);
+    }
+    elseif(strlen($phone) == 11)
+    {
+        $pattern = "/(09)[0-9]{9}/";
+        $status = preg_match($pattern,$phone);
+    }
+    return $status;
+}

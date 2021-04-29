@@ -47,11 +47,66 @@ class DocumentController extends Controller
             $documents = $documents->get();
         }
         else{
-            $documents = $documents->paginate()->withPath(url()->full());
+            $documents = $documents->orderBy('id','desc')->paginate()->withPath(url()->full());
         }
         return view('user.documents.index',compact('documents'));
     }
 
+    public function type(Request $request,$type)
+    {
+        if($type > 0 && $type < 4) {
+            $pageName = null;
+            if ($type == 1)
+            {
+                $pageName = 'آسیب پذیری های با درجه کم';
+                if(!Auth::user()->can('doc_count_low'))
+                {
+                    alert()->warning('شما دسترسی به این صفحه را ندارید');
+                    return back();
+                }
+            }
+            if ($type == 2)
+            {
+                $pageName = 'آسیب پذیری های با درجه متوسط';
+                if(!Auth::user()->can('doc_count_medium'))
+                {
+                    alert()->warning('شما دسترسی به این صفحه را ندارید');
+                    return back();
+                }
+            }
+            if ($type == 3)
+            {
+                $pageName = 'آسیب پذیری های با درجه بالا';
+                if(!Auth::user()->can('doc_count_high'))
+                {
+                    alert()->warning('شما دسترسی به این صفحه را ندارید');
+                    return back();
+                }
+            }
+            $documents = Doc::query()
+                ->where('id','<=',Content::all()->count())
+                ->default($type)
+                ->sortById($request->sortById)
+                ->sortByName($request->sortByName)
+                ->sortByYear($request->sortByYear)
+                ->sortByMonth($request->sortByMonth)
+                ->sortByScore($request->sortByScore)
+                ->search($request->key,$request->SearchOptions);
+            if(isset($request->paginate) && $request->paginate > 0)
+            {
+                $documents = $documents->paginate($request->paginate)->withPath(url()->full());
+            }
+            elseif(isset($request->paginate) && $request->paginate == 0)
+            {
+                $documents = $documents->get();
+            }
+            else{
+                $documents = $documents->orderBy('id','desc')->paginate()->withPath(url()->full());
+            }
+            return view('user.documents.index',compact('documents','pageName'));
+        }
+        return abort(404);
+    }
     /**
      * Show the form for creating a new resource.
      *

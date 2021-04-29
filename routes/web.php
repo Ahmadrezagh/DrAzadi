@@ -25,16 +25,24 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('roles', 'Admin\RoleController');
 //        Route::resource('categories', 'Admin\CategoryController');
         Route::resource('documents','Admin\DocumentController');
+        Route::get('documents/type/{type}','Admin\DocumentController@type')->name('pageType');
         Route::resource('content','Admin\ContentController');
         Route::resource('users', 'Admin\UserController');
         Route::resource('settings', 'Admin\SettingController');
         Route::resource('translates', 'Admin\TranslateController');
         Route::resource('userRoles','Admin\UserRoleController');
+        Route::resource('profile','Admin\ProfileController');
+        Route::get('users/changeStatus/{id}','Admin\UserController@changeStatus')->name('users.change.status');
+        Route::resource('upgradeRequest','Admin\UserUpgradeRequestController');
     });
-    Route::prefix('user')->name('user.')->group(function () {
+
+    Route::prefix('user')->middleware('active')->name('user.')->group(function () {
         // User routes
         Route::resource('documents','User\DocumentController');
+        Route::get('documents/type/{type}','User\DocumentController@type')->name('pageType');
         Route::resource('translate','User\TranslateController');
+        Route::resource('profile','User\ProfileController');
+        Route::resource('upgradeRequest','User\UpgradeRequestController');
     });
     // Default
     Route::get('/home', 'HomeController@index')->name('home');
