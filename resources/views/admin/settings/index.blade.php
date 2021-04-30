@@ -73,7 +73,43 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endif
+                                            @elseif($setting->type == 'btn')
+                                                <div class="row">
+                                                    <div class="form-group col-6">
+                                                        <label for="exampleInputFile"> متن {{$setting->description}}  </label>
+                                                        <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[0]}}">
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label for="exampleInputFile"> لینک {{$setting->description}}  </label>
+                                                        <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[1]}}">
+                                                    </div>
+
+                                                </div>
+                                            @elseif($setting->type == 'itdb')
+                                                <div class="row">
+                                                    <div class="form-group col-3">
+                                                        <label for="exampleInputFile"> آیکن {{$setting->description}}  </label>
+                                                        <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[0] ?? ''}}">
+                                                    </div>
+                                                    <div class="form-group col-3">
+                                                        <label for="exampleInputFile"> عنوان {{$setting->description}}  </label>
+                                                        <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[1] ?? ''}}">
+                                                    </div>
+
+                                                    <div class="form-group col-3">
+                                                        <label for="exampleInputFile"> متن دکمه {{$setting->description}}  </label>
+                                                        <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[2] ?? ''}}">
+                                                    </div>
+                                                    <div class="form-group col-3">
+                                                        <label for="exampleInputFile"> لینک دکمه {{$setting->description}}  </label>
+                                                        <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[3] ?? '' }}">
+                                                    </div>
+                                                    <div class="form-group col-12">
+                                                        <label for="exampleInputFile"> متن {{$setting->description}}  </label>
+                                                        <textarea type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile">{{json_decode($setting->value)[4] ?? ''}}</textarea>
+                                                    </div>
+                                                </div>
+                                            @endif
                                     @endforeach
                                 </div>
                                 <!-- /.card-body -->
