@@ -55,7 +55,10 @@ class HomeController extends Controller
         if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
         {
 
-
+//            Score::create([
+//                'content_id' => 1,
+//                'score_desc' => 'high',
+//            ]);
 
             return view('admin.index',compact('documents'));
 
