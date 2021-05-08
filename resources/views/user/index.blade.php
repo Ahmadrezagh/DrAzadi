@@ -192,7 +192,7 @@
                                     <tr>
                                         @if(Auth::user()->can('doc_id'))<td>{{$doc->id}}</td>@endif
                                         @if(Auth::user()->can('doc_name'))<td>
-                                            <a href="{{route('documents.show',$doc->id)}}">{{$doc->slug}}</a>
+                                            <a href="{{route('user.documents.show',$doc->id)}}">{{$doc->slug}}</a>
                                         </td>
                                         @endif
                                         @if(Auth::user()->can('doc_year'))<td>{{$doc->year}}</td>@endif

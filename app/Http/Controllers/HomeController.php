@@ -10,8 +10,10 @@ use App\Models\Permission;
 use App\Models\Score;
 use App\Models\User;
 use App\Notifications\CVENotification;
+use http\QueryString;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -32,33 +34,42 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $documents = Doc::query()
-            ->where('id','<=',Content::all()->count())
-            ->default(Auth::user()->default->type ?? 0)
-            ->sortById($request->sortById)
-            ->sortByName($request->sortByName)
-            ->sortByYear($request->sortByYear)
-            ->sortByMonth($request->sortByMonth)
-            ->sortByScore($request->sortByScore)
-            ->search($request->key,$request->SearchOptions);
-        if(isset($request->paginate) && $request->paginate > 0)
+        $key = CacheKey($request,Auth::user()->default->type ?? 0);
+        if(!Cache::has($key))
         {
-            $documents = $documents->paginate($request->paginate)->withPath(url()->full());
+            $documents = Cache::remember($key,33600,function () use ($request)  {
+                $_documents = Doc::query()
+                    ->where('id','<=',Content::all()->count())
+                    ->default(Auth::user()->default->type ?? 0)
+                    ->sortById($request->sortById)
+                    ->sortByName($request->sortByName)
+                    ->sortByYear($request->sortByYear)
+                    ->sortByMonth($request->sortByMonth)
+                    ->sortByScore($request->sortByScore)
+                    ->search($request->key,$request->SearchOptions);
+                if(isset($request->paginate) && $request->paginate > 0)
+                {
+                    $_documents = $_documents->paginate($request->paginate)->withPath(url()->full());
+                }
+                elseif(isset($request->paginate) && $request->paginate == 0)
+                {
+                    $_documents = $_documents->get();
+                }
+                else{
+                    $_documents = $_documents->orderBy('id','desc')->paginate()->withPath(url()->full());
+                }
+                return $_documents;
+
+            });
+        }else{
+            $documents = Cache::get($key);
         }
-        elseif(isset($request->paginate) && $request->paginate == 0)
-        {
-            $documents = $documents->get();
-        }
-        else{
-            $documents = $documents->orderBy('id','desc')->paginate()->withPath(url()->full());
-        }
+
+
         if(Auth::user()->isAdmin() || Auth::user()->isSuperAdmin())
         {
 
-//            Score::create([
-//                'content_id' => 1,
-//                'score_desc' => 'high',
-//            ]);
+
 
             return view('admin.index',compact('documents'));
 
@@ -72,10 +83,12 @@ class HomeController extends Controller
 //            ]);
             if(Auth::user()->active != 1)
             {
+                $message = Auth::user()->deactive_reason ? decrypt(Auth::user()->deactive_reason) : null;
                 Auth::logout();
                 alert()->warning('دسترسی شما به سامانه مسدود شده است');
-                return redirect(route('login'));
+                return view('auth.login',compact('message'));
             }
+//            Cache::flush();
             return view('user.index',compact('documents'));
         }
 

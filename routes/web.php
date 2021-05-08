@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-
     return view('welcome');
 });
 Auth::routes();
@@ -33,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('translates', 'Admin\TranslateController');
         Route::resource('userRoles','Admin\UserRoleController');
         Route::resource('profile','Admin\ProfileController');
-        Route::get('users/changeStatus/{id}','Admin\UserController@changeStatus')->name('users.change.status');
+        Route::post('users/changeStatus/{id}','Admin\UserController@changeStatus')->name('users.change.status');
         Route::resource('upgradeRequest','Admin\UserUpgradeRequestController');
     });
 

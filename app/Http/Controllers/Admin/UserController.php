@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doc;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
@@ -95,7 +98,27 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+//        $time_start = microtime(true);
+
+//        if(!Cache::has('user_'.$id))
+//        {
+////            return 'not cache';
+//            $user = Cache::rememberForever('user_'.$id,function () use ($id) {
+//                return Doc::query()->take(10000)->get();
+//            });
+//        }else{
+////            return 'cache';
+//            $user = Cache::get('user_'.$id);
+//        }
+//        Cache::flush();
+//        $user = Cache::get('user_'.$id,function () use ($id) {
+//            return Doc::query()->take(5000)->get();
+//        });
+
+
+//        $time_end = microtime(true);
+//        return $user;
+//        return ($time_end-$time_start) * 1000 . " Milliseconds";
     }
 
     /**
@@ -109,13 +132,15 @@ class UserController extends Controller
         //
     }
 
-    public function changeStatus($id)
+    public function changeStatus(Request $request,$id)
     {
         $user = User::findOrFail($id);
+        $message = $request->message;
         if($user->active == 1)
         {
             $user->update([
-                'active' => 0
+                'active' => 0,
+                'deactive_reason' => encrypt($message)
             ]);
             alert()->success('کاربر با موفقیت مسدود شد');
         }else{

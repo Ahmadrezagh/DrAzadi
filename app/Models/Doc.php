@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use mysql_xdevapi\Exception;
 use simplehtmldom\HtmlWeb;
@@ -18,15 +19,11 @@ class Doc extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $with = ['content'];
+//    protected $with = ['content'];
     public function content(): HasOne
     {
         return $this->hasOne(Content::class);
     }
-
-
-
-
     public static function fetchNews($fromYear = null)
     {
         $fromYear = $fromYear ?? (now()->year - 1);
@@ -136,6 +133,10 @@ class Doc extends Model
         return $this->content->score->where('score_desc','!=',NULL)->first();
     }
 
+    public function translate()
+    {
+        return $this->hasOne(DocTranslate::class);
+    }
     //--------------Scopes--------------
     public function scopeSortById($query,$id=null)
     {
@@ -192,11 +193,6 @@ class Doc extends Model
         }else{
             return $query;
         }
-    }
-
-    public function translate()
-    {
-        return $this->hasOne(DocTranslate::class);
     }
     public function scopeSearch($query,$key=null,$columns=null)
     {
@@ -256,7 +252,6 @@ class Doc extends Model
             return $query;
         }
     }
-
     public function scopeDefault($query,$default = 0)
     {
         $key = null;
@@ -284,6 +279,13 @@ class Doc extends Model
         }
     }
 
+    //--------------Caches----------------------------
+    public function getCachedContentAttribute()
+    {
+        return Cache::remember($this->cacheKey() . ':content', 33600, function () {
+            return $this->content;
+        });
+    }
 
 
 }

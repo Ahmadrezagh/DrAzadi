@@ -9,6 +9,7 @@ use App\Models\Score;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class DocumentController extends Controller
 {
@@ -32,24 +33,29 @@ class DocumentController extends Controller
      */
     public function index(Request $request)
     {
-        $documents = Doc::query()
-            ->where('id','<=',Content::all()->count())
-            ->sortById($request->sortById)
-            ->sortByName($request->sortByName)
-            ->sortByYear($request->sortByYear)
-            ->sortByMonth($request->sortByMonth)
-            ->sortByScore($request->sortByScore)
-            ->search($request->key,$request->SearchOptions);
-        if(isset($request->paginate) && $request->paginate > 0)
+        $key = CacheKey($request);
+        if(!Cache::has($key))
         {
-            $documents = $documents->paginate($request->paginate)->withPath(url()->full());
-        }
-        elseif(isset($request->paginate) && $request->paginate == 0)
-        {
-            $documents = $documents->get();
-        }
-        else{
-            $documents = $documents->orderBy('id','desc')->paginate()->withPath(url()->full());
+            $documents = Cache::remember($key,33600,function () use ($request) {
+                $_documents = Doc::query()
+                    ->where('id', '<=', Content::all()->count())
+                    ->sortById($request->sortById)
+                    ->sortByName($request->sortByName)
+                    ->sortByYear($request->sortByYear)
+                    ->sortByMonth($request->sortByMonth)
+                    ->sortByScore($request->sortByScore)
+                    ->search($request->key, $request->SearchOptions);
+                if (isset($request->paginate) && $request->paginate > 0) {
+                    $_documents = $_documents->paginate($request->paginate)->withPath(url()->full());
+                } elseif (isset($request->paginate) && $request->paginate == 0) {
+                    $_documents = $_documents->get();
+                } else {
+                    $_documents = $_documents->orderBy('id', 'desc')->paginate()->withPath(url()->full());
+                }
+                return $_documents;
+            });
+        }else{
+            $documents = Cache::get($key);
         }
         return view('admin.documents.index',compact('documents'));
     }
@@ -80,25 +86,29 @@ class DocumentController extends Controller
             {
                 $pageName = 'آسیب پذیری های با درجه بالا';
             }
-            $documents = Doc::query()
-                ->where('id','<=',Content::all()->count())
-                ->default($type)
-                ->sortById($request->sortById)
-                ->sortByName($request->sortByName)
-                ->sortByYear($request->sortByYear)
-                ->sortByMonth($request->sortByMonth)
-                ->sortByScore($request->sortByScore)
-                ->search($request->key,$request->SearchOptions);
-            if(isset($request->paginate) && $request->paginate > 0)
-            {
-                $documents = $documents->paginate($request->paginate)->withPath(url()->full());
-            }
-            elseif(isset($request->paginate) && $request->paginate == 0)
-            {
-                $documents = $documents->get();
-            }
-            else{
-                $documents = $documents->orderBy('id','desc')->paginate()->withPath(url()->full());
+            $key = CacheKey($request,$type,'single_type'.$type.'_');
+            if(!Cache::has($key)) {
+                $documents = Cache::remember($key, 33600, function () use ($type, $request) {
+                    $_documents = Doc::query()
+                        ->where('id', '<=', Content::all()->count())
+                        ->default($type)
+                        ->sortById($request->sortById)
+                        ->sortByName($request->sortByName)
+                        ->sortByYear($request->sortByYear)
+                        ->sortByMonth($request->sortByMonth)
+                        ->sortByScore($request->sortByScore)
+                        ->search($request->key, $request->SearchOptions);
+                    if (isset($request->paginate) && $request->paginate > 0) {
+                        $_documents = $_documents->paginate($request->paginate)->withPath(url()->full());
+                    } elseif (isset($request->paginate) && $request->paginate == 0) {
+                        $_documents = $_documents->get();
+                    } else {
+                        $_documents = $_documents->orderBy('id', 'desc')->paginate()->withPath(url()->full());
+                    }
+                    return $_documents;
+                });
+            }else{
+                $documents = Cache::get($key);
             }
             return view('admin.documents.index',compact('documents','pageName'));
         }

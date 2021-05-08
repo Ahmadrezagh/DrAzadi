@@ -12,7 +12,7 @@ class Content extends Model
     use HasFactory;
 
     protected $guarded = [];
-    protected $with = ['score'];
+//    protected $with = ['score'];
 
     public function doc(): BelongsTo
     {

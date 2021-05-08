@@ -29,7 +29,8 @@ class User extends Authenticatable
         'password',
         'profile',
         'type_id',
-        'active'
+        'active',
+        'deactive_reason'
     ];
 
     /**

@@ -134,9 +134,9 @@
                                     <td>{{$user->role()->first()->name ?? '-'}}</td>
                                     <td>
                                         @if($user->active == 1)
-                                            <a data-toggle="tooltip" data-placement="top" title="مسدود سازی" href="{{route('users.change.status',$user->id)}}" class="btn btn-success" >فعال</a>
+                                            <button data-toggle="modal" data-target="#modal-deactive{{$user->id}}" class="btn btn-success" >فعال</button>
                                         @else
-                                            <a data-toggle="tooltip" data-placement="top" title="فعال سازی"  href="{{route('users.change.status',$user->id)}}" class="btn btn-danger"> مسدود </a>
+                                            <button data-toggle="modal" data-target="#modal-active{{$user->id}}" class="btn btn-danger"> مسدود </button>
                                         @endif
                                     </td>
                                     <td>{{$user->email}}</td>
@@ -255,6 +255,67 @@
                                                         <button type="submit" class="btn btn-primary">ویرایش</button>
                                                     </div>
                                                 </form>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
+
+                                <!-- Active Modal -->
+                                <div class="modal fade" id="modal-active{{$user->id}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">فعال سازی کاربر</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5>آیا در فعال سازی کاربر  `{{$user->name}}` مطمین هستید؟ </h5>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                                                <form action="{{route('users.change.status',$user->id)}}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success">فعال سازی</button>
+
+                                                </form>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
+                                <!-- Active Modal -->
+                                <div class="modal fade" id="modal-deactive{{$user->id}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">مسدود سازی کاربر</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{route('users.change.status',$user->id)}}" method="POST">
+                                            <div class="modal-body">
+                                                <h5>آیا در مسدود سازی کاربر  `{{$user->name}}` مطمین هستید؟ </h5>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="message" placeholder="علت مسدود سازی">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">مسدود سازی</button>
+
+                                                </form>
+
                                             </div>
                                         </div>
                                         <!-- /.modal-content -->

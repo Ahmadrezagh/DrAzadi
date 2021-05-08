@@ -139,11 +139,8 @@
                                                                 </div>
                                                                     <div class="form-group col-12">
                                                                         <label for="exampleFormControlInput1">توضیحات تکمیلی</label>
-
-                                                                        <input type="text" name="desc" class="form-control" @if($request->description) value="{{decrypt($request->description) ?? ''}}" @endif  placeholder="توضیحات تکمیلی راجب وضعیت درخواست">
-
+                                                                        <input type="text" name="desc" class="form-control" value="{{decrypt($request->description)}}" id="exampleFormControlInput1" placeholder="توضیحات تکمیلی راجب وضعیت درخواست">
                                                                     </div>
-
 
                                                             </div>
                                                             <div class="form-group col-12">

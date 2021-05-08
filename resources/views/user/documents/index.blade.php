@@ -207,7 +207,7 @@
                                     <tr>
                                         @if(Auth::user()->can('doc_id') && (!isset(request()->filterOptions) || isset(request()->filterOptions) && in_array(1,request()->filterOptions)))<td>{{$doc->id}}</td>@endif
                                         @if(Auth::user()->can('doc_name') && (!isset(request()->filterOptions) || isset(request()->filterOptions) && in_array(2,request()->filterOptions)))<td>
-                                            <a href="{{route('documents.show',$doc->id)}}">{{$doc->slug}}</a>
+                                            <a href="{{route('user.documents.show',$doc->id)}}">{{$doc->slug}}</a>
                                         </td>
                                         @endif
                                         @if(Auth::user()->can('doc_year') && (!isset(request()->filterOptions) || isset(request()->filterOptions) && in_array(3,request()->filterOptions)))<td>{{$doc->year}}</td>@endif

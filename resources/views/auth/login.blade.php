@@ -12,6 +12,11 @@
     <div class="card">
       <div class="card-body login-card-body " >
         <p class="login-box-msg">ورود به حساب کاربری</p>
+        @if(isset($message) && $message)
+              <div class="alert alert-danger text-center" role="alert">
+                  {{$message}}
+              </div>
+          @endif
 
         <form method="POST" action="{{ route('login') }}">
             @csrf

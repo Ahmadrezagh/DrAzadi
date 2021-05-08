@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-
+use Illuminate\Http\Request;
 function setting($name)
 {
     return \App\Models\Setting::getValue($name);
@@ -84,4 +84,39 @@ function validatePhoneIR($phone)
         $status = preg_match($pattern,$phone);
     }
     return $status;
+}
+
+function CacheKey(Request $request, $type = 0,$prefix = '')
+{
+    $default = 0;
+    if(Auth::user() && Auth::user()->default && Auth::user()->default->type)
+    {
+        $default = $type;
+    }
+    $key = $prefix.'key_'.$default."_";
+    $keys = array_keys($request->all());
+    foreach ($keys as $k)
+    {
+        if(is_array($request[$k]))
+        {
+            foreach ($request[$k] as $sub_k)
+            {
+                $key = $key.$k."_".$sub_k."_";
+            }
+        }else{
+            $key = $key.$k."_".$request[$k]."_";
+        }
+    }
+    if($request->key && $request->SearchOptions)
+    {
+        foreach ($request->SearchOptions as $k)
+        {
+            $key = $key.$k."_";
+        }
+    }
+    if($request->paginate)
+    {
+        $key = $key.$request->paginate."_";
+    }
+    return $key;
 }
