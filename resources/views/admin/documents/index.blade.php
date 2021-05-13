@@ -103,6 +103,14 @@
                                             </label>
                                         </div>
                                     @endif
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="8"
+                                               id="defaultCheck1"
+                                               @if(isset(request()->SearchOptions) && in_array(8,request()->SearchOptions)) checked @endif>
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            تگ
+                                        </label>
+                                    </div>
                                 </div>
                                 <hr>
                                 <h5 class="mt-3">فیلتر</h5>

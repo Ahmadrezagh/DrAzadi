@@ -102,6 +102,14 @@
                                         </label>
                                     </div>
                                     @endif
+                                        @if(Auth::user()->can('doc_score_tag') && !isset($pageName))
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="8" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(8,request()->SearchOptions)) checked @endif>
+                                                <label class="form-check-label" for="defaultCheck1">
+                                                   تگ
+                                                </label>
+                                            </div>
+                                        @endif
                                 </div>
                                 <h5 class="mt-3 col-12">فیلتر</h5>
                                 <div class=" col-12 row">

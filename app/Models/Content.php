@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Content extends Model
 {
@@ -13,6 +14,24 @@ class Content extends Model
 
     protected $guarded = [];
 //    protected $with = ['score'];
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class,'doc_tags');
+    }
+
+    public function getTags()
+    {
+        $tag_ids = [];
+        $tags = Tag::all();
+        foreach ($tags as $tag)
+        {
+            if(Str::contains($this->current_description,$tag->name) || Str::contains($this->analysis_description,$tag->name))
+            {
+                array_push($tag_ids,$tag->id);
+            }
+        }
+        $this->tags()->sync($tag_ids);
+    }
 
     public function doc(): BelongsTo
     {

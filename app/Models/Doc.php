@@ -95,6 +95,8 @@ class Doc extends Model
 
         /** @var Content $content */
         $content = Content::create($fetchedContent);
+        /** find Tags in Content */
+        $content->getTags();
 
         foreach ($html->find('#vulnCvssPanel > div[class=container-fluid]') as $section) {
             foreach ($section->find('div[class=row no-gutters]') as $row) {
@@ -247,6 +249,20 @@ class Doc extends Model
                 return $query->whereHas('content', function ( $_query) use ($key) {
                     $_query->where('source','=',strtoupper($key));
                 });
+            }
+            if(in_array(8,$columns))
+            {
+                $tag = Tag::where('name','=',$key)->first();
+                if($tag)
+                {
+                    $key = $tag->id;
+                    return $query->whereHas('content', function ( $_query) use ($key) {
+                        $_query->whereHas('tags', function ( $q) use ($key) {
+                            $q->where('tag_id','=',$key);
+                        });
+                    });
+                }
+                return $query;
             }
         }else{
             return $query;

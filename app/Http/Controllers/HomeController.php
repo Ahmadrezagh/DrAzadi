@@ -8,6 +8,7 @@ use App\Models\Content;
 use App\Models\Doc;
 use App\Models\Permission;
 use App\Models\Score;
+use App\Models\Tag;
 use App\Models\User;
 use App\Notifications\CVENotification;
 use http\QueryString;

@@ -88,6 +88,10 @@
                                             </table>
 
                                         </div>
+                                        <h5 class="mt-3">لیست تگ های مرتبط :</h5>
+                                        @foreach($content->tags as $tag)
+                                            <a class="btn btn-secondary" href="" target="_blank">{{$tag->name}}</a>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

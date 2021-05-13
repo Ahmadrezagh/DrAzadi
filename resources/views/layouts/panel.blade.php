@@ -261,8 +261,8 @@
                                                             <p>نقش ها</p>
                                                         </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="{{route('upgradeRequest.index')}}" class="nav-link @yield('userRoles')">
+                                                    <li class="nav-item">
+                                                        <a href="{{route('upgradeRequest.index')}}" class="nav-link @yield('upgradeRequest')">
                                                             <p>درخواست های ارتقا</p>
                                                         </a>
 

@@ -1,4 +1,7 @@
 @extends('layouts.panel')
+@section('User')
+    active
+@endsection
 @section('upgradeRequest')
     active
 @endsection
