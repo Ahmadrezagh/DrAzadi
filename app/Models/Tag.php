@@ -23,6 +23,7 @@ class Tag extends Model
     {
         $response = Http::get('https://cve.circl.lu/api/browse');
         $tags = json_decode($response)->vendor;
+        return count($tags);
         if(count($tags) > count(Tag::all()))
         {
             foreach ($tags as $tag)

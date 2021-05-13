@@ -12,6 +12,9 @@
   <component name="ChangeListManager">
     <list default="true" id="efeeae8a-233b-4cef-8d2e-23164946c062" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/front.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/front.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +239,7 @@
       <workItem from="1620574221863" duration="214000" />
       <workItem from="1620717763680" duration="3757000" />
       <workItem from="1620804648336" duration="2988000" />
-      <workItem from="1620843573523" duration="10384000" />
+      <workItem from="1620843573523" duration="15553000" />
     </task>
     <servers />
   </component>
@@ -256,11 +259,11 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="127" key="#Deployment" timestamp="1620902150859">
+    <state x="320" y="127" key="#Deployment" timestamp="1620905818513">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="320" y="107" key="#Deployment/0.0.1440.900@0.0.1440.900" timestamp="1620484055364" />
-    <state x="320" y="127" key="#Deployment/0.23.1440.877@0.23.1440.877" timestamp="1620902150859" />
+    <state x="320" y="127" key="#Deployment/0.23.1440.877@0.23.1440.877" timestamp="1620905818513" />
     <state x="304" y="114" key="#SSH_Configurations" timestamp="1618053485495">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
