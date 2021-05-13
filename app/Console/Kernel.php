@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-//           Tag::getTagList();
+           Tag::getTagList();
             updateTags();
         })->everyTenMinutes();
     }
