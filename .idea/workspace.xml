@@ -12,7 +12,12 @@
   <component name="ChangeListManager">
     <list default="true" id="efeeae8a-233b-4cef-8d2e-23164946c062" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Mail/CVEAlertMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/CVEAlertMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Doc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Mail/CVEAlert.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Mail/CVEAlert.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/settings/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/settings/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/front.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/front.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
     </list>
@@ -239,7 +244,8 @@
       <workItem from="1620574221863" duration="214000" />
       <workItem from="1620717763680" duration="3757000" />
       <workItem from="1620804648336" duration="2988000" />
-      <workItem from="1620843573523" duration="15553000" />
+      <workItem from="1620843573523" duration="21152000" />
+      <workItem from="1620972975202" duration="335000" />
     </task>
     <servers />
   </component>
@@ -281,11 +287,11 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="413" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1619700810418" />
-    <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1620719113478">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="458" y="230" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1620910259100">
+      <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="458" y="212" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1440.900@0.0.1440.900" timestamp="1620719113478" />
-    <state x="458" y="230" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1619042999956" />
+    <state x="458" y="230" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1440.877@0.23.1440.877" timestamp="1620910259100" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1614701141883">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -294,11 +300,11 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="556" y="367" key="WebDeployment.AddServerDialog.v.1/0.23.1440.877@0.23.1440.877" timestamp="1618053424402" />
-    <state x="385" y="214" width="670" height="659" key="search.everywhere.popup" timestamp="1620900643646">
+    <state x="385" y="214" width="670" height="659" key="search.everywhere.popup" timestamp="1620917160919">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1619672865243" />
-    <state x="385" y="214" width="670" height="659" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1620900643646" />
+    <state x="385" y="214" width="670" height="659" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1620917160919" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -325,7 +331,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php-line-method">
           <url>file://$PROJECT_DIR$/app/Models/Doc.php</url>
-          <line>179</line>
+          <line>181</line>
           <properties>
             <option name="className" value="\App\Models\Doc" />
             <option name="methodName" value="scopeSortByScore" />

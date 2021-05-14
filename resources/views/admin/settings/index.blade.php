@@ -31,7 +31,7 @@
                         <!-- general form elements -->
                         <div class="card card-primary">
                             <div class="card-header">
-                                <h3 class="card-title" style="float: right">تنظیمات | {{$group->name}}</h3>
+                                <h3 class="card-title" style="float: right">تنظیمات  {{$group->name}}</h3>
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
@@ -42,22 +42,22 @@
                                     @foreach($group->settings as $setting)
                                         @if($setting->type == 'string')
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">{{$setting->description}}</label>
-                                                <input type="text" name="{{$setting->id}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{$setting->value}}">
+                                                <label for="exampleInputEmail1">{{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif</label>
+                                                <input type="text" name="{{$setting->id}}" class="form-control" id="exampleInputEmail1"  value="{{$setting->value}}">
                                             </div>
                                         @elseif($setting->type == 'email')
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{$setting->description}}</label>
-                                                    <input type="email" name="{{$setting->id}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{$setting->value}}">
+                                                    <label for="exampleInputEmail1">{{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif</label>
+                                                    <input type="email" name="{{$setting->id}}" class="form-control" id="exampleInputEmail1" value="{{$setting->value}}">
                                                 </div>
                                         @elseif($setting->type == 'number')
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">{{$setting->description}}</label>
-                                                    <input type="number" name="{{$setting->id}}" class="form-control" id="exampleInputEmail1" placeholder="Enter email" value="{{$setting->value}}">
+                                                    <label for="exampleInputEmail1">{{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif</label>
+                                                    <input type="number" name="{{$setting->id}}" class="form-control" id="exampleInputEmail1" value="{{$setting->value}}">
                                                 </div>
                                         @elseif($setting->type == 'textarea')
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">{{$setting->description}}</label>
+                                                <label for="exampleInputEmail1">{{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif</label>
                                             <textarea name="{{$setting->id}}">{{$setting->value}}</textarea>
                                             <script>
                                                 CKEDITOR.replace( '{{$setting->id}}' );
@@ -65,7 +65,7 @@
                                             </div>
                                         @elseif($setting->type == 'file')
                                             <div class="form-group">
-                                                <label for="exampleInputFile">{{$setting->description}}</label>
+                                                <label for="exampleInputFile">{{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif</label>
                                                 <div class="input-group">
                                                     <div class="custom-file">
                                                         <input type="file" name="{{$setting->id}}" class="custom-file-input" id="exampleInputFile">
@@ -76,11 +76,11 @@
                                             @elseif($setting->type == 'btn')
                                                 <div class="row">
                                                     <div class="form-group col-6">
-                                                        <label for="exampleInputFile"> متن {{$setting->description}}  </label>
+                                                        <label for="exampleInputFile"> متن {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
                                                         <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[0]}}">
                                                     </div>
                                                     <div class="form-group col-6">
-                                                        <label for="exampleInputFile"> لینک {{$setting->description}}  </label>
+                                                        <label for="exampleInputFile"> لینک {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
                                                         <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[1]}}">
                                                     </div>
 
@@ -88,27 +88,69 @@
                                             @elseif($setting->type == 'itdb')
                                                 <div class="row">
                                                     <div class="form-group col-3">
-                                                        <label for="exampleInputFile"> آیکن {{$setting->description}}  </label>
+                                                        <label for="exampleInputFile"> آیکن {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
                                                         <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[0] ?? ''}}">
                                                     </div>
                                                     <div class="form-group col-3">
-                                                        <label for="exampleInputFile"> عنوان {{$setting->description}}  </label>
+                                                        <label for="exampleInputFile"> عنوان {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
                                                         <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[1] ?? ''}}">
                                                     </div>
 
                                                     <div class="form-group col-3">
-                                                        <label for="exampleInputFile"> متن دکمه {{$setting->description}}  </label>
+                                                        <label for="exampleInputFile"> متن دکمه {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
                                                         <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[2] ?? ''}}">
                                                     </div>
                                                     <div class="form-group col-3">
-                                                        <label for="exampleInputFile"> لینک دکمه {{$setting->description}}  </label>
+                                                        <label for="exampleInputFile"> لینک دکمه {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
                                                         <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[3] ?? '' }}">
                                                     </div>
                                                     <div class="form-group col-12">
-                                                        <label for="exampleInputFile"> متن {{$setting->description}}  </label>
+                                                        <label for="exampleInputFile"> متن {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
                                                         <textarea type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile">{{json_decode($setting->value)[4] ?? ''}}</textarea>
                                                     </div>
                                                 </div>
+                                        @elseif($setting->type == 'itd')
+                                            <div class="row">
+                                                <div class="form-group col-3">
+                                                    <label for="exampleInputFile"> آیکن {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
+                                                    <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[0] ?? ''}}">
+                                                </div>
+                                                <div class="form-group col-3">
+                                                    <label for="exampleInputFile"> عنوان {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
+                                                    <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[1] ?? ''}}">
+                                                </div>
+                                                <div class="form-group col-12">
+                                                    <label for="exampleInputFile"> متن {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
+                                                    <textarea type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile">{{json_decode($setting->value)[2] ?? ''}}</textarea>
+                                                </div>
+                                            </div>
+
+                                        @elseif($setting->type == 'counter')
+                                            <div class="row">
+                                                <div class="form-group col-4">
+                                                    <label for="exampleInputFile"> آیکن {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
+                                                    <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[0] ?? ''}}">
+                                                </div>
+                                                <div class="form-group col-4">
+                                                    <label for="exampleInputFile"> عنوان {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
+                                                    <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[1] ?? ''}}">
+                                                </div>
+                                                <div class="form-group col-4">
+                                                    <label for="exampleInputFile"> تعداد {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
+                                                    <input type="number" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[2] ?? ''}}">
+                                                </div>
+                                            </div>
+                                        @elseif($setting->type == 'link')
+                                            <div class="row">
+                                                <div class="form-group col-6">
+                                                    <label for="exampleInputFile"> عنوان {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
+                                                    <input type="text" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[0] ?? ''}}">
+                                                </div>
+                                                <div class="form-group col-6">
+                                                    <label for="exampleInputFile"> لینک {{$setting->description}} @if($setting->section_name) {{setting($setting->section_name)}} @endif </label>
+                                                    <input type="number" name="{{$setting->id}}[]" class="form-control" id="exampleInputFile" value="{{json_decode($setting->value)[1] ?? ''}}">
+                                                </div>
+                                            </div>
                                             @endif
                                     @endforeach
                                 </div>

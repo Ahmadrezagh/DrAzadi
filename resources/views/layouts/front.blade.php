@@ -30,29 +30,29 @@
                     <div id="gtco-logo"><a href="{{url('/')}}">{{setting('short_name')}}</a></div>
                 </div>
                 <div class="col-xs-8 text-center menu-1">
-                    <ul>
-                        <li class="active"><a href="#">صفحه نخست</a></li>
-                        <li><a href="#">درباره ما</a></li>
-                        <li class="has-dropdown">
-                            <a href="#">سرویس ها</a>
-                            <ul class="dropdown">
-                                <li><a href="#">طراحی سایت</a></li>
-                                <li><a href="#">گرافیک</a></li>
-                                <li><a href="#">برندسازی</a></li>
-                                <li><a href="#">سئو</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="#">ابزارها</a>
-                            <ul class="dropdown">
-                                <li><a href="#">HTML5</a></li>
-                                <li><a href="#">CSS3</a></li>
-                                <li><a href="#">bootstrap</a></li>
-                                <li><a href="#">jQuery</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">تماس با ما</a></li>
-                    </ul>
+{{--                    <ul>--}}
+{{--                        <li class="active"><a href="#">صفحه نخست</a></li>--}}
+{{--                        <li><a href="#">درباره ما</a></li>--}}
+{{--                        <li class="has-dropdown">--}}
+{{--                            <a href="#">سرویس ها</a>--}}
+{{--                            <ul class="dropdown">--}}
+{{--                                <li><a href="#">طراحی سایت</a></li>--}}
+{{--                                <li><a href="#">گرافیک</a></li>--}}
+{{--                                <li><a href="#">برندسازی</a></li>--}}
+{{--                                <li><a href="#">سئو</a></li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
+{{--                        <li class="has-dropdown">--}}
+{{--                            <a href="#">ابزارها</a>--}}
+{{--                            <ul class="dropdown">--}}
+{{--                                <li><a href="#">HTML5</a></li>--}}
+{{--                                <li><a href="#">CSS3</a></li>--}}
+{{--                                <li><a href="#">bootstrap</a></li>--}}
+{{--                                <li><a href="#">jQuery</a></li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
+{{--                        <li><a href="#">تماس با ما</a></li>--}}
+{{--                    </ul>--}}
                 </div>
                 <div class="col-xs-2 text-left hidden-xs menu-2">
                     <ul>
@@ -73,9 +73,8 @@
         <div class="gtco-container">
             <div class="row row-pb-md">
                 <div class="col-md-4 gtco-widget">
-                    <h3>شرکت</h3>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-                    <p><a href="#">بیشتر</a></p>
+                    <h3>درباره ما</h3>
+                    {!! setting('about_us') !!}
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
                     <ul class="gtco-footer-links">
@@ -108,15 +107,14 @@
             <div class="row copyleft">
                 <div class="col-md-12">
                     <p class="pull-right">
-                        <small class="block">&copy; 2019 Free HTML5. All Right Reserved.</small>
-                        <small class="block">translated by <a href="http://webrubik.com/" target="_blank">webrubik.com</a></small>
+                        <small class="block"> طراحی و توسعه <a href="http://cert.pgu.ac.ir/" target="_blank">مرکز آپا خلیج فارس بوشهر</a></small>
                     </p>
                     <p class="pull-left">
                     <ul class="gtco-social-icons pull-left">
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                        <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                        <li><a href="{{setting('twitter')}}"><i class="icon-twitter"></i></a></li>
+                        <li><a href="{{setting('facebook')}}"><i class="icon-facebook"></i></a></li>
+                        <li><a href="{{setting('linkedin')}}"><i class="icon-linkedin"></i></a></li>
+                        <li><a href="{{setting('dribbble')}}"><i class="icon-dribbble"></i></a></li>
                     </ul>
                     </p>
                 </div>

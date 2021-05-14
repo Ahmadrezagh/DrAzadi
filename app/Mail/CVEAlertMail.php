@@ -58,7 +58,8 @@ class CVEAlertMail extends Mailable
             ->markdown('Mail.CVEAlert',[
                 'url' => route('documents.show',$this->score->content->doc->id),
                 'cve_name' =>   $this->score->content->doc->slug,
-                'desc' => $desc
+                'desc' => $desc,
+                'tags' => $this->score->content->tags,
             ]);
     }
 }

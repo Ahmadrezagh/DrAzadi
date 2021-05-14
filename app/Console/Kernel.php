@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\Install;
+use App\Models\Doc;
 use App\Models\Tag;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -28,7 +29,14 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
            Tag::getTagList();
             updateTags();
-        })->everyTenMinutes();
+        })->hourly();
+
+        $schedule->call(function () {
+            Doc::fetchNews();
+            Doc::query()->each(function (Doc $doc) {
+                $doc->fetchContent();
+            });
+        })->daily();
     }
 
     /**

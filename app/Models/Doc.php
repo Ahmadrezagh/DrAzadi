@@ -41,7 +41,9 @@ class Doc extends Model
                 foreach ($docs as $url)
                     try {
                         $slug = str_replace('/vuln/detail/', '', $url->href);
-                        self::create([
+                        self::firstOrCreate([
+                            'slug' => $slug,
+                            ],[
                             'year' => explode('-', $slug)[1],
                             'month' => $month,
                             'slug' => $slug,
