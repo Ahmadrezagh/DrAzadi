@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
            Tag::getTagList();
             updateTags();
+            updateBrands();
         })->hourly();
 
         $schedule->call(function () {

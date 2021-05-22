@@ -19,6 +19,11 @@ class Content extends Model
         return $this->belongsToMany(Tag::class,'doc_tags');
     }
 
+    public function brands()
+    {
+        return $this->belongsToMany(Brand::class);
+    }
+
     public function getTags()
     {
         $tag_ids = [];
@@ -31,6 +36,20 @@ class Content extends Model
             }
         }
         $this->tags()->sync($tag_ids);
+    }
+
+    public function getBrands()
+    {
+        $brand_ids = [];
+        $brands = Brand::all();
+        foreach ($brands as $brand)
+        {
+            if(Str::contains($this->current_description,$brand->name) || Str::contains($this->analysis_description,$brand->name))
+            {
+                array_push($brand_ids,$brand->id);
+            }
+        }
+        $this->brands()->sync($brand_ids);
     }
 
     public function doc(): BelongsTo

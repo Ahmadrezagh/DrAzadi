@@ -168,6 +168,14 @@
                                                 </label>
                                             </div>
                                         @endif
+                                            @if(Auth::user()->can('doc_brand'))
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="SearchOptions[]" value="8" id="defaultCheck1" @if(isset(request()->SearchOptions) && in_array(8,request()->SearchOptions)) checked @endif>
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        محصول
+                                                    </label>
+                                                </div>
+                                            @endif
                                     </div>
                                 </form>
                             </div>
@@ -185,6 +193,7 @@
                                     @if(Auth::user()->can('doc_score'))<th><a @if(request()->sortByScore && request()->sortByScore == 'asc' ) href="?sortByScore=desc" @else href="?sortByScore=asc" @endif>امتیاز پایه</a></th>@endif
                                     @if(Auth::user()->can('doc_score_desc'))<th><a @if(request()->sortByScore && request()->sortByScore == 'asc' ) href="?sortByScore=desc" @else href="?sortByScore=asc" @endif  >درجه کیفی</a></th>@endif
                                     @if(Auth::user()->can('doc_translate')) <th><a href="#">ترجمه</a></th> @endif
+                                        @if(Auth::user()->can('doc_brand')) <th><a href="#">محصول</a></th> @endif
                                 </tr>
                                 </thead>
                                 <tbody >
@@ -203,6 +212,9 @@
                                         @if(Auth::user()->can('doc_score_desc'))<td @if(!$doc->score()) style="color: red" @endif >{{$doc->score()->score_desc ?? 'N/A'}}</td>@endif
                                         @if(Auth::user()->can('doc_translate')) <td> @if($doc->translate) <a
                                                 href="{{route('user.translate.show',$doc->id)}}" class="btn btn-primary">مشاهده ترجمه</a> @else - @endif </td> @endif
+                                            @if(Auth::user()->can('doc_brand'))
+                                            <th>{{$doc->content->brands->first()->name ?? '-'}}</th>
+                                            @endif
                                     </tr>
                                 @endforeach
 

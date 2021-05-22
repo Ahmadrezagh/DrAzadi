@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\DocumentRegistered;
+use App\Models\Brand;
+use App\Models\BrandContent;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Doc;
@@ -26,6 +28,11 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+//            Score::create([
+//                'content_id' => 1,
+//                'score_desc' => 'high',
+//            ]);
     }
 
     /**

@@ -13,13 +13,17 @@
     <list default="true" id="efeeae8a-233b-4cef-8d2e-23164946c062" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Helpers/helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Helpers/helper.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Mail/CVEAlertMail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/CVEAlertMail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Content.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Content.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Doc.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Doc.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/Mail/CVEAlert.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Mail/CVEAlert.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/settings/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/settings/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/front.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/front.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/content/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/content/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/documents/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/documents/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/documents/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/documents/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/user/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +249,18 @@
       <workItem from="1620717763680" duration="3757000" />
       <workItem from="1620804648336" duration="2988000" />
       <workItem from="1620843573523" duration="21152000" />
-      <workItem from="1620972975202" duration="335000" />
+      <workItem from="1620972975202" duration="814000" />
+      <workItem from="1620996168940" duration="378000" />
+      <workItem from="1621062657002" duration="464000" />
+      <workItem from="1621079292488" duration="331000" />
+      <workItem from="1621329353629" duration="1265000" />
+      <workItem from="1621583947259" duration="1140000" />
+      <workItem from="1621591141980" duration="223000" />
+      <workItem from="1621592762811" duration="138000" />
+      <workItem from="1621602252034" duration="213000" />
+      <workItem from="1621603288623" duration="173000" />
+      <workItem from="1621613516257" duration="3268000" />
+      <workItem from="1621659357662" duration="3076000" />
     </task>
     <servers />
   </component>
@@ -265,15 +280,15 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="320" y="127" key="#Deployment" timestamp="1620905818513">
+    <state x="320" y="127" key="#Deployment" timestamp="1621591349156">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="320" y="107" key="#Deployment/0.0.1440.900@0.0.1440.900" timestamp="1620484055364" />
-    <state x="320" y="127" key="#Deployment/0.23.1440.877@0.23.1440.877" timestamp="1620905818513" />
-    <state x="304" y="114" key="#SSH_Configurations" timestamp="1618053485495">
+    <state x="320" y="127" key="#Deployment/0.23.1440.877@0.23.1440.877" timestamp="1621591349156" />
+    <state x="304" y="114" key="#SSH_Configurations" timestamp="1621591347834">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="304" y="114" key="#SSH_Configurations/0.23.1440.877@0.23.1440.877" timestamp="1618053485495" />
+    <state x="304" y="114" key="#SSH_Configurations/0.23.1440.877@0.23.1440.877" timestamp="1621591347834" />
     <state x="444" y="253" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1620482247050">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -321,7 +336,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/resources/views/admin/documents/index.blade.php</url>
-          <line>196</line>
+          <line>204</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">

@@ -119,3 +119,12 @@ function updateTags()
     }
 
 }
+function updateBrands()
+{
+    $available_ids = \App\Models\BrandContent::query()->distinct('content_id')->pluck('content_id');
+    $contents = \App\Models\Content::query()->whereNotIn('id', $available_ids)->get();
+    foreach ($contents as $content) {
+        $content->getBrands();
+    }
+
+}

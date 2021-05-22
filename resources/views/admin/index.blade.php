@@ -163,6 +163,7 @@
                                     @if ((Auth::user()->isAdmin() && Auth::user()->can('Documents')) || Auth::user()->isSuperAdmin() )
                                         <th><a href="#">عملیات</a></th>
                                     @endif
+                                    <th>محصول</th>
                                 </tr>
                                 </thead>
                                 <tbody >
@@ -181,6 +182,7 @@
                                         @if ((Auth::user()->isAdmin() && Auth::user()->can('Documents')) || Auth::user()->isSuperAdmin() )
                                             <td><a href="{{route('translates.show',$doc->id)}}"> @if($doc->translate) ویرایش ترجمه @else ایجاد ترجمه @endif </a></td>
                                         @endif
+                                        <td>{{$doc->content->brands->first()->name ?? '-'}}</td>
                                     </tr>
                                 @endforeach
 

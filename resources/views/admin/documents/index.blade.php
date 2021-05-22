@@ -108,7 +108,7 @@
                                                id="defaultCheck1"
                                                @if(isset(request()->SearchOptions) && in_array(8,request()->SearchOptions)) checked @endif>
                                         <label class="form-check-label" for="defaultCheck1">
-                                            تگ
+                                            محصول
                                         </label>
                                     </div>
                                 </div>
@@ -190,6 +190,14 @@
                                             </label>
                                         </div>
                                     @endif
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="filterOptions[]" value="10"
+                                               id="defaultCheck1"
+                                               @if(isset(request()->filterOptions) && in_array(10,request()->filterOptions)) checked @endif>
+                                        <label class="form-check-label" for="defaultCheck1">
+                                            محصول
+                                        </label>
+                                    </div>
                                 </div>
                                 <button class="btn btn-primary mt-3">اعمال فیلتر</button>
                             </form>
@@ -231,6 +239,11 @@
                                             <th><a href="#">عملیات</a></th>
                                         @endif
                                     @endif
+                                        @if(!request()->filterOptions || (request()->filterOptions && in_array(10,request()->filterOptions)) )
+                                        <th>
+                                        <a href="#">محصول</a>
+                                        </th>
+                                        @endif
 
                                 </tr>
                                 </thead>
@@ -261,6 +274,10 @@
                                                         ویرایش ترجمه @else ایجاد ترجمه @endif </a></td>
                                         @endif
                                         @endif
+                                            @if(!request()->filterOptions || (request()->filterOptions && in_array(10,request()->filterOptions)) )
+                                                <td >{{ $doc->content->brands->first()->name ?? '-' }}</td>@endif
+
+
                                     </tr>
                                 @endforeach
 

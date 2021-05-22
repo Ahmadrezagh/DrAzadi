@@ -8,15 +8,9 @@
 @component('mail::message')
    <div class="text-center justify-content-center">
        <p class="text-center justify-content-center" dir="rtl" style="justify-content: center !important; text-align:center !important;" >
-           آسیب پذیری جدید با درجه خطر {{$desc}} با نام {{$cve_name}} گزارش شد.
+           انتشار آسیب پذیری سطح {{$desc}} در تاریخ {{$date}} به شناسه {{$cve_name}} در محصولات {{$brand}} . منبع :
+           {{$nvd_url}}
        </p>
-       <br>
-       <p dir="rtl" style="float: right">تگ های مربوط : </p>
-       <div class="row"  >
-           @foreach($tags as $tag)
-               <button class="btn btn-secondary"> {{$tag->name}}</button>
-           @endforeach
-       </div>
    </div>
 
 

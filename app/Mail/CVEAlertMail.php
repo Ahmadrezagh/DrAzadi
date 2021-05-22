@@ -8,6 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Morilog\Jalali\Jalalian;
 
 class CVEAlertMail extends Mailable
 {
@@ -57,9 +58,11 @@ class CVEAlertMail extends Mailable
         return $this->subject('اعلان آسیب پذیری جدید با درجه خطر '.$desc)
             ->markdown('Mail.CVEAlert',[
                 'url' => route('documents.show',$this->score->content->doc->id),
+                'nvd_url' => $this->score->content->doc->nvd_url,
                 'cve_name' =>   $this->score->content->doc->slug,
                 'desc' => $desc,
-                'tags' => $this->score->content->tags,
+                'brand' => $this->score->content->brands->first()->name ?? ' - ',
+                'date' => \Morilog\Jalali\Jalalian::forge($this->score->content->published_date)->format('%A, %d %B %Y')
             ]);
     }
 }
