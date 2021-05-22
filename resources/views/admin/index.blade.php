@@ -28,7 +28,7 @@
                         <!-- small box -->
                         <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{\App\Models\Content::count()}}</h3>
+                                <h3>{{number_format(\App\Models\Content::count())}}</h3>
 
                                 <p>کل آسیب پذیری های گزارش شده</p>
                             </div>
@@ -43,7 +43,7 @@
                         <!-- small box -->
                         <div class="small-box bg-success">
                             <div class="inner">
-                                <h3>{{\App\Models\Score::where('score_desc','=','low')->count()}}</h3>
+                                <h3>{{number_format(\App\Models\Score::where('score_desc','=','low')->count())}}</h3>
                                 <p>آسیب پذیری های با شدت کم</p>
                             </div>
                             <div class="icon">
@@ -57,7 +57,7 @@
                         <!-- small box -->
                         <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{\App\Models\Score::where('score_desc','=','medium')->count()}}</h3>
+                                <h3>{{number_format(\App\Models\Score::where('score_desc','=','medium')->count())}}</h3>
                                 <p>آسیب پذیری های با شدت متوسط</p>
                             </div>
                             <div class="icon">
@@ -71,7 +71,7 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>{{\App\Models\Score::where('score_desc','=','high')->count()}}</h3>
+                                <h3>{{number_format(\App\Models\Score::where('score_desc','=','high')->count())}}</h3>
                                 <p>آسیب پذیری های با شدت بالا</p>
                             </div>
                             <div class="icon">
