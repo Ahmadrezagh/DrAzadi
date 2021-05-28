@@ -41,6 +41,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        Content::find(137)->getBrands();
         $key = CacheKey($request,Auth::user()->default->type ?? 0);
         if(!Cache::has($key))
         {

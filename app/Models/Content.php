@@ -46,7 +46,11 @@ class Content extends Model
         {
             if(Str::contains($this->current_description,' '.$brand->name) || Str::contains($this->analysis_description,' '.$brand->name))
             {
-                array_push($brand_ids,$brand->id);
+//                array_push($brand_ids,[
+//                    'id' => $brand->id,
+//                    'position' => strpos($this->current_description.$this->analysis_description,' '.$brand->name)
+//                ]);
+                $brand_ids[strpos($this->current_description.$this->analysis_description,' '.$brand->name)] = $brand->id;
             }
         }
         $this->brands()->sync($brand_ids);
