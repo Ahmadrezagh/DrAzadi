@@ -293,7 +293,7 @@
                                         @endif
                     @if ((Auth::user()->isAdmin() && Auth::user()->can('ContentUpdate')) || Auth::user()->isSuperAdmin() )
                                         <li class="nav-item">
-                                            <a href="{{url('/api/cron/fetch/content/')}}" class="nav-link">
+                                            <a href="{{url('/cron/fetch/content/')}}" class="nav-link">
 
                                                 <i class="fas fa-file-upload"></i>
                                                 <p>

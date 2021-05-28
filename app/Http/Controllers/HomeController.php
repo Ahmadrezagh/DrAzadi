@@ -28,7 +28,6 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
 //            Score::create([
 //                'content_id' => 1,
 //                'score_desc' => 'high',

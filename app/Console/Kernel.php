@@ -26,12 +26,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-           Tag::getTagList();
-            updateTags();
-            updateBrands();
-        })->hourly();
-
+//        $schedule->call(function () {
+//           Tag::getTagList();
+//            updateTags();
+//            updateBrands();
+//        })->hourly();
+//
         $schedule->call(function () {
             Doc::fetchNews();
             Doc::query()->each(function (Doc $doc) {

@@ -47,3 +47,7 @@ Route::middleware(['auth'])->group(function () {
     // Default
     Route::get('/home', 'HomeController@index')->name('home');
 });
+Route::group(['prefix' => 'cron'], function () {
+    Route::get('/fetch/docs/{fromYear?}', 'CronController@fetchDocs')->name('docs.update');
+    Route::get('/fetch/content/{docId?}', 'CronController@fetchContent')->name('api.content.update');
+});

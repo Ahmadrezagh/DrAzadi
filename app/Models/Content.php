@@ -44,7 +44,7 @@ class Content extends Model
         $brands = Brand::all();
         foreach ($brands as $brand)
         {
-            if(Str::contains($this->current_description,$brand->name) || Str::contains($this->analysis_description,$brand->name))
+            if(Str::contains($this->current_description,' '.$brand->name) || Str::contains($this->analysis_description,' '.$brand->name))
             {
                 array_push($brand_ids,$brand->id);
             }
